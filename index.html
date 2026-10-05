@@ -530,7 +530,7 @@ const I18N = {
     aboutP2:"Je m'intéresse beaucoup à la philosophie, à la psychologie et à la mythologie. D'où le nom <b>occalm.</b> : <b>Occam</b>, dont le rasoir dit que l'explication la plus simple est souvent la bonne, et <b>au calme</b>, l'état d'esprit dans lequel j'aime avancer. Écouter, simplifier, puis créer ce qui marche.",
     aboutP3:"Toujours en quête d'apprentissage, de belles rencontres et de projets qui ont du sens. Avec occalm., je mets tout ça au service de celles et ceux qui veulent grandir sans perdre ce qui les rend uniques.",
     aboutCta:"Let's get in touch !", readMore:"Lire la suite", readLess:"Réduire", certBtn:"Découvrir mes certifications", certTitle:"Certifications", verify:"Vérifier le certificat",
-    contactEyebrow:"Une marque à lancer, une campagne à préparer ou un site à refaire ? Écrivez-moi, on en discute simplement.", contactBig:"Parlons-en", formOpen:"Écrire un message", formTitle:"Parlons de votre projet", formIntro:"Quelques mots suffisent, je vous réponds rapidement.", fName:"Votre nom", fEmail:"Votre e-mail", fType:"Votre besoin", fMsg:"Votre message", fSend:"Envoyer le message", fTypes:["Branding","Réseaux sociaux & contenu","Site web","Publicité","Autre"], fDone:"Votre application e-mail s'ouvre avec le message prêt à partir. Il ne reste qu'à cliquer sur Envoyer.", fFallback:"Rien ne s'ouvre ? Écrivez-moi directement :", fCopy:"Copier", fCopied:"Copié", fErr:"Merci d'indiquer votre nom, votre e-mail et un message.", footer:"Marketing digital · Maroc",
+    contactEyebrow:"Une marque à lancer, une campagne à préparer ou un site à refaire ? Écrivez-moi, on en discute simplement.", contactBig:"Parlons-en", formOpen:"Écrire un message", formTitle:"Parlons de votre projet", formIntro:"Quelques mots suffisent, je vous réponds rapidement.", fName:"Votre nom", fEmail:"Votre e-mail", fType:"Votre besoin", fMsg:"Votre message", fSend:"Envoyer le message", fTypes:["Branding","Réseaux sociaux & contenu","Site web","Publicité","Autre"], fDone:"Votre application e-mail s'ouvre avec le message prêt à partir. Il ne reste qu'à cliquer sur Envoyer.", fFallback:"Rien ne s'ouvre ? Écrivez-moi directement :", fCopy:"Copier", fCopied:"Copié", fErr:"Merci d'indiquer votre nom, votre e-mail et un message.", fSent:"Merci ! Votre message a bien été envoyé. Je vous répondrai rapidement.", fFail:"Une erreur est survenue. Merci de réessayer.", footer:"Marketing digital · Maroc",
     all:"Tous", soon:"Projet à venir", view:"Voir le projet ↗", open:"Ouvrir", close:"Fermer", filter:"Filtrer les projets",
     client:"Client", agency:"Agence", period:"Période",
     darkOn:"Activer le mode sombre", darkOff:"Activer le mode clair",
@@ -555,7 +555,7 @@ const I18N = {
     aboutP2:"I'm deeply interested in philosophy, psychology and mythology. Hence the name <b>occalm.</b>: <b>Occam</b>, whose razor says the simplest explanation is usually right, and <i>au calme</i>, French for calmly, the mindset I like to work in. Listen, simplify, then create what works.",
     aboutP3:"Always hungry to learn, to meet great people and to work on projects that mean something. With occalm., I put all of this to work for people who want to grow without losing what makes them unique.",
     aboutCta:"Let's get in touch!", readMore:"Read more", readLess:"Show less", certBtn:"See my certifications", certTitle:"Certifications", verify:"Verify certificate",
-    contactEyebrow:"A brand to launch, a campaign to plan or a website to rebuild? Write to me and we'll talk it through.", contactBig:"Let's talk", formOpen:"Send a message", formTitle:"Tell me about your project", formIntro:"A few words are enough, I'll get back to you quickly.", fName:"Your name", fEmail:"Your email", fType:"What you need", fMsg:"Your message", fSend:"Send message", fTypes:["Branding","Social media & content","Website","Advertising","Other"], fDone:"Your email app opens with the message ready. Just click Send.", fFallback:"Nothing opened? Email me directly:", fCopy:"Copy", fCopied:"Copied", fErr:"Please add your name, your email and a message.", footer:"Digital marketing · Morocco",
+    contactEyebrow:"A brand to launch, a campaign to plan or a website to rebuild? Write to me and we'll talk it through.", contactBig:"Let's talk", formOpen:"Send a message", formTitle:"Tell me about your project", formIntro:"A few words are enough, I'll get back to you quickly.", fName:"Your name", fEmail:"Your email", fType:"What you need", fMsg:"Your message", fSend:"Send message", fTypes:["Branding","Social media & content","Website","Advertising","Other"], fDone:"Your email app opens with the message ready. Just click Send.", fFallback:"Nothing opened? Email me directly:", fCopy:"Copy", fCopied:"Copied", fErr:"Please add your name, your email and a message.", fSent:"Thank you! Your message has been sent. I'll get back to you quickly.", fFail:"Something went wrong. Please try again.", footer:"Digital marketing · Morocco",
     all:"All", soon:"Coming soon", view:"View project ↗", open:"Open", close:"Close", filter:"Filter projects",
     client:"Client", agency:"Agency", period:"Period",
     darkOn:"Switch to dark mode", darkOff:"Switch to light mode",
@@ -871,6 +871,8 @@ function openProject(i) {
   modal.hidden = false; document.documentElement.style.overflow = "hidden"; $("#close").focus();
 }
 const CONTACT_EMAIL = "ouma.bourouh@gmail.com";
+const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+const WEB3FORMS_KEY = "9b6c76c5-dc77-47d2-8fdf-01713f396049";
 function openContact() {
   if (modal.hidden) lastFocus = document.activeElement; openIndex = -3;
   $("#sheet").innerHTML = `<button class="close" id="close" aria-label="${t("close")}">✕</button>
@@ -885,17 +887,35 @@ function openContact() {
       <div class="cf-done" id="cf-done" hidden><p>${t("fDone")}</p><p class="cf-fb">${t("fFallback")} <span class="cf-mail" id="cf-mail">${CONTACT_EMAIL}</span> <button type="button" class="cf-copy" id="cf-copy">${t("fCopy")}</button></p></div>
     </form>`;
   modal.hidden = false; document.documentElement.style.overflow = "hidden"; $("#cf-name").focus();
-  $("#cform").addEventListener("submit", e => {
+  // Envoi via Web3Forms (fetch, sans quitter la page)
+  let sending = false;
+  $("#cform").addEventListener("submit", async e => {
     e.preventDefault();
-    const f = e.target, name = f.name.value.trim(), email = f.email.value.trim(), msg = f.msg.value.trim(), type = f.type.value;
-    if (!name || !email.includes("@") || !msg) { $("#cf-err").hidden = false; return; }
-    $("#cf-err").hidden = true;
-    const subject = `Portfolio · ${type} · ${name}`;
-    const body = `${msg}\n\n—\n${name}\n${email}`;
-    const a = document.createElement("a");
-    a.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    document.body.appendChild(a); a.click(); a.remove();
-    $("#cf-done").hidden = false;
+    if (sending) return;
+    const f = e.target, btn = f.querySelector('button[type="submit"]');
+    const name = f.name.value.trim(), email = f.email.value.trim(), msg = f.msg.value.trim(), type = f.type.value;
+    const err = $("#cf-err"), done = $("#cf-done");
+    done.hidden = true;
+    if (!name || !email.includes("@") || !msg) { err.textContent = t("fErr"); err.hidden = false; return; }
+    err.hidden = true;
+    sending = true; btn.disabled = true; btn.setAttribute("aria-busy", "true");
+    try {
+      const res = await fetch(WEB3FORMS_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({ access_key: WEB3FORMS_KEY, subject: `Portfolio · ${type} · ${name}`, from_name: name, name, email, besoin: type, message: msg })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.success === false) throw new Error(data.message || "send_failed");
+      f.reset();
+      done.querySelector("p").textContent = t("fSent");
+      done.querySelector(".cf-fb").hidden = true;
+      done.hidden = false;
+    } catch (_) {
+      err.textContent = t("fFail"); err.hidden = false;
+    } finally {
+      sending = false; btn.disabled = false; btn.removeAttribute("aria-busy");
+    }
   });
   $("#cf-copy").addEventListener("click", () => {
     const b = $("#cf-copy");
