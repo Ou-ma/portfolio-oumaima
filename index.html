@@ -1,0 +1,1151 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Oumaima · occalm.</title>
+<meta name="description" content="Oumaima, fondatrice d'occalm. : stratégie marketing, branding, contenu, sites web, SEO et Ads. / Founder of occalm.: marketing strategy, branding, content, websites, SEO and Ads.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* occalm. — personal portfolio. Base: Framer-style editorial page (pill nav, giant name hero, lime marquee, staggered work grid, service index, about, giant contact).
+   Signatures, repeated sparingly:
+   1. The razor (rasoir d'Occam): a thin slanted cut — in the marquee, service titles and case-study headings.
+   2. The occalm. dot: titles end on an accent full stop.
+   3. The lime field: the brand colour carried by the marquee, the services band and the calls to action. */
+:root{
+  --ink:#10141f; --ink-2:#171d2c; --lime:#d9ff4a; --blue:#5e7bff; --ivory:#f6f3ea; --ivory-2:#fbf9f3; --mist:#dde2ec;
+  --bg:var(--ivory); --surface:var(--ivory-2); --fg:var(--ink);
+  --muted:color-mix(in oklab,var(--ink) 58%,var(--ivory));
+  --line:color-mix(in oklab,var(--ink) 12%,var(--ivory));
+  --line-2:color-mix(in oklab,var(--ink) 22%,var(--ivory));
+  --chip:var(--mist); --accent:var(--blue); --hi:var(--lime); --on-hi:var(--ink);
+  --inverse-bg:var(--ink); --inverse-fg:var(--ivory);
+  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --r:18px; --r-lg:26px; --gutter:clamp(18px,4.5vw,56px); --max:1280px;
+  --ease:cubic-bezier(.22,.7,.18,1);
+  --sec:clamp(88px,11vw,160px);
+  --band:var(--ink); --on-band:var(--ivory); --mauve:#7457e0;
+  --razor:linear-gradient(115deg,transparent 46%,currentColor 46%,currentColor 54%,transparent 54%);
+}
+:root[data-theme="dark"]{
+  --bg:#0c1019; --surface:var(--ink-2); --fg:var(--ivory);
+  --muted:color-mix(in oklab,var(--ivory) 60%,var(--ink));
+  --line:color-mix(in oklab,var(--ivory) 12%,var(--ink));
+  --line-2:color-mix(in oklab,var(--ivory) 24%,var(--ink));
+  --chip:#232a3d; --accent:#8da0ff;
+  --inverse-bg:var(--ivory); --inverse-fg:var(--ink); --band:#1a2133; color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{background:var(--bg);color:var(--fg);font:400 17px/1.6 var(--f-body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;transition:background .4s var(--ease),color .4s var(--ease)}
+::selection{background:var(--hi);color:var(--on-hi)}
+a{color:inherit}
+img{max-width:100%}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+.mono{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500}
+h1,h2,h3,h4{font-family:var(--f-display);margin:0;text-wrap:balance}
+section{padding-block:var(--sec)}
+
+/* ---------- signature 2 : occalm. dot ---------- */
+.sec-head h2::after{content:".";color:var(--accent)}
+
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,34ch);gap:24px 48px;align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+.sec-head h2{font-size:clamp(44px,7vw,104px);line-height:.9;font-weight:800;letter-spacing:-.045em}
+.sec-head p{color:var(--muted);margin:0 0 .5em;font-size:16px;line-height:1.55;padding-left:18px;border-left:1px solid var(--line-2)}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;padding-block:14px}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:12px;background:color-mix(in oklab,var(--surface) 78%,transparent);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border:1px solid var(--line);border-radius:999px;padding:7px 7px 7px 22px;box-shadow:0 1px 0 #ffffff40 inset,0 10px 30px -18px #10141f40;transition:padding .35s var(--ease),box-shadow .35s var(--ease)}
+.nav.scrolled .nav-in{box-shadow:0 1px 0 #ffffff40 inset,0 14px 40px -18px #10141f55}
+.logo{font-family:var(--f-display);font-weight:900;font-size:22px;letter-spacing:-.045em;text-decoration:none}
+.logo b{color:var(--accent);display:inline-block;transition:transform .5s var(--ease)}
+.logo:hover b{transform:translateY(-3px)}
+.nav ul{display:flex;gap:2px;list-style:none;margin:0;padding:0}
+.nav ul a{position:relative;display:block;text-decoration:none;font-weight:500;font-size:14.5px;padding:9px 14px;color:var(--muted);transition:color .25s}
+.nav ul a::after{content:"";position:absolute;left:14px;right:14px;bottom:5px;height:1.5px;background:var(--fg);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.nav ul a:hover,.nav ul a[aria-current="true"]{color:var(--fg)}
+.nav ul a:hover::after,.nav ul a[aria-current="true"]::after{transform:scaleX(1);transform-origin:left}
+.controls{display:flex;align-items:center;gap:8px}
+.seg{display:flex;background:var(--chip);border-radius:999px;padding:3px}
+.seg button{font:600 11.5px var(--f-mono);letter-spacing:.08em;color:var(--muted);background:none;border:0;padding:7px 11px;border-radius:999px;cursor:pointer;transition:color .2s,background .25s}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--fg);box-shadow:0 1px 3px #10141f26}
+.theme-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--fg);display:grid;place-items:center;cursor:pointer;padding:0;transition:transform .5s var(--ease)}
+.theme-btn:hover{transform:rotate(-20deg)}
+.theme-btn svg{width:16px;height:16px}
+.theme-btn .i-sun{display:none}
+.theme-btn[aria-pressed="true"] .i-sun{display:block}
+.theme-btn[aria-pressed="true"] .i-moon{display:none}
+
+/* ---------- buttons ---------- */
+.btn{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:12px;min-height:48px;text-decoration:none;font:600 15px/1 var(--f-body);letter-spacing:-.005em;padding:0 8px 0 22px;border-radius:999px;border:0;cursor:pointer;transition:transform .35s var(--ease),color .35s var(--ease),border-color .35s}
+.btn .arrow{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;font-size:14px;transition:transform .45s var(--ease),background .35s}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;transform:translateY(101%);transition:transform .45s var(--ease)}
+.btn:hover::before{transform:translateY(0)}
+.btn:hover .arrow{transform:rotate(45deg)}
+.btn:active{transform:scale(.97)}
+.btn-hi{background:var(--hi);color:var(--on-hi)}
+.btn-hi .arrow{background:var(--ink);color:var(--lime)}
+.btn-hi::before{background:var(--ink)}
+.btn-hi:hover{color:var(--lime)}
+.btn-hi:hover .arrow{background:var(--lime);color:var(--ink)}
+.btn-mauve{background:var(--mauve);color:#fff}
+.btn-mauve .arrow{background:#fff;color:var(--mauve)}
+.btn-mauve::before{background:var(--ink)}
+.btn-mauve:hover{color:var(--lime)}
+.btn-mauve:hover .arrow{background:var(--lime);color:var(--ink)}
+.btn-ink{background:var(--inverse-bg);color:var(--inverse-fg)}
+.btn-ink .arrow{background:var(--hi);color:var(--on-hi)}
+.btn-ink::before{background:var(--accent)}
+.btn-ghost{background:transparent;color:var(--fg);border:1px solid var(--line-2);padding-right:22px}
+.btn-ghost .arrow{width:auto;height:auto;margin-right:-6px}
+.btn-ghost::before{background:var(--fg)}
+.btn-ghost:hover{color:var(--bg);border-color:var(--fg)}
+.btn-ghost:hover .arrow{transform:translateX(3px)}
+a.btn-ghost:not(:has(.arrow)){padding-right:22px}
+
+/* ---------- hero ---------- */
+.hero{padding-block:clamp(32px,6vw,80px) 0;overflow-x:clip}
+.status{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:13.5px;font-weight:500}
+.pulse{width:8px;height:8px;border-radius:50%;background:#2fbf71;box-shadow:0 0 0 0 #2fbf7166;animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px #2fbf7100}100%{box-shadow:0 0 0 0 #2fbf7100}}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,300px);gap:clamp(28px,6vw,96px);align-items:end;margin-top:clamp(28px,4vw,48px)}
+.hero h1{font-size:clamp(60px,11vw,168px);line-height:.8;font-weight:900;letter-spacing:-.06em;margin-left:-.04em;white-space:nowrap}
+.hero h1 em{white-space:normal}
+.hero h1 .dot{color:var(--accent);display:inline-block;animation:dot 1s var(--ease) .2s both}
+@keyframes dot{from{transform:translateY(-.5em);opacity:0}}
+.hero h1 em{font-style:normal;display:block;font-size:.3em;letter-spacing:-.035em;font-weight:700;line-height:1.08;margin-top:.42em;margin-left:.13em;color:var(--muted)}
+.hero h1 em mark{background:none;color:var(--fg);background-image:linear-gradient(var(--hi),var(--hi));background-size:100% .42em;background-position:0 88%;background-repeat:no-repeat;padding:0 .08em;animation:mark 1.1s var(--ease) .5s both}
+@keyframes mark{from{background-size:0 .42em}}
+/* mode sombre : texte jaune occalm. lisible, simple trait dessous */
+:root[data-theme="dark"] .hero h1 em mark{color:var(--lime);background-size:100% .06em;background-position:0 100%;animation:none}
+:root[data-theme="dark"] .hero h1 em{color:color-mix(in oklab,var(--ivory) 72%,var(--ink))}
+.lede{font-size:clamp(17.5px,1.45vw,20px);line-height:1.6;max-width:46ch;margin:clamp(26px,3vw,36px) 0 30px;color:color-mix(in oklab,var(--fg) 82%,var(--bg))}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap}
+.portrait{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5;max-width:100%;background:var(--mist)}
+.portrait img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s var(--ease)}
+.portrait:hover img{transform:scale(1.03)}
+.portrait.small-ph{max-width:300px;width:100%;justify-self:end;overflow:visible}
+.portrait.small-ph img{border-radius:var(--r-lg)}
+.portrait.about-ph{max-width:300px;justify-self:start}
+.portrait .tag{position:absolute;left:12px;bottom:12px;right:12px;display:flex;justify-content:space-between;align-items:center;gap:8px;background:color-mix(in oklab,var(--ink) 72%,transparent);color:var(--ivory);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:10px 14px;border-radius:14px;font-size:12.5px;line-height:1.35}
+.portrait .tag{flex-direction:column;align-items:flex-start;gap:3px}
+.portrait .tag strong{font-family:var(--f-display);font-size:15.5px;letter-spacing:-.02em}
+.portrait .tag .role{font-size:10px;letter-spacing:.12em;opacity:.7}
+.tag-more{margin-top:4px;font-size:13px;font-weight:600;color:#b9a6ff;text-decoration:none;transition:letter-spacing .4s var(--ease)}
+.tag-more:hover{letter-spacing:.01em}
+.sticker{position:absolute;top:-22px;right:-22px;width:84px;height:84px;border-radius:50%;background:#7457e0;color:var(--ivory);display:grid;place-items:center;box-shadow:0 10px 24px -10px #10141f66;z-index:2}
+.sticker svg{position:absolute;inset:0;animation:spin 22s linear infinite}
+.sticker span{font-family:var(--f-display);font-size:24px;font-weight:900;letter-spacing:-.05em}
+@keyframes spin{to{transform:rotate(360deg)}}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:clamp(48px,7vw,88px)}
+.facts div{padding:24px 28px 0 0;display:flex;flex-direction:column;gap:8px}
+.facts div+div{padding-left:28px;border-left:1px solid var(--line)}
+.facts b{font-family:var(--f-display);font-weight:800;font-size:clamp(20px,1.9vw,26px);letter-spacing:-.035em;line-height:1.1}
+.facts b::after{content:".";color:var(--accent)}
+.facts span{color:var(--muted);font-size:15px;line-height:1.5;max-width:34ch}
+
+/* ---------- marquee ---------- */
+.marquee{margin-top:clamp(64px,9vw,112px);background:#7457e0;color:var(--ivory);transform:rotate(1deg) scale(1.02);overflow:hidden;padding-block:16px;border-block:1px solid var(--ink)}
+.track{display:flex;gap:40px;width:max-content;animation:slide 48s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track span{font-family:var(--f-display);font-weight:800;font-size:clamp(24px,3vw,40px);letter-spacing:-.035em;white-space:nowrap;display:flex;align-items:center;gap:40px}
+.track span::after{content:"";width:.7em;height:.5em;color:var(--lime);background:var(--razor)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- work ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:clamp(32px,4vw,48px)}
+.filters button{font:500 14px var(--f-body);color:var(--muted);background:transparent;border:1px solid var(--line);padding:8px 15px;border-radius:999px;cursor:pointer;transition:color .25s,border-color .25s,background .25s}
+.filters button:hover{color:var(--fg);border-color:var(--line-2)}
+.filters button[aria-pressed="true"]{color:var(--inverse-fg);background:var(--inverse-bg);border-color:var(--inverse-bg)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(40px,5vw,72px) clamp(20px,3vw,40px);align-items:start}
+.card{display:flex;flex-direction:column;gap:16px;cursor:pointer;background:none;border:0;padding:0;text-align:left;color:inherit;font:inherit}
+.card.off{margin-top:clamp(48px,9vw,140px)}
+.card:nth-child(4n+1) .cover{aspect-ratio:4/4.6}
+.cover{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;max-width:100%;background:var(--chip);transform:translateZ(0)}
+.cover .art{position:absolute;inset:0;transition:transform 1.1s var(--ease)}
+.cover .art img{width:100%;height:100%;object-fit:cover;display:block}
+/* filtre homogène sur les visuels mis en avant */
+.cover .art>img,.cover .browser img,.hero-img,.hero-frame img{filter:saturate(.9) contrast(1.05) brightness(1.02)}
+.cover .art::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 55%,#10141f24)}
+.card:hover .art{transform:scale(1.045)}
+.cover .view{position:absolute;right:16px;bottom:16px;z-index:3;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;background:var(--lime);color:var(--ink);font-size:18px;font-weight:600;transform:scale(.6) rotate(-45deg);opacity:0;transition:transform .5s var(--ease),opacity .3s}
+.card:hover .view,.card:focus-visible .view{opacity:1;transform:none}
+.framed .art{display:grid;place-items:center;padding:9%}
+.browser{width:100%;border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 30px 60px -24px #10141f66,0 0 0 1px #10141f0f}
+.browser .bar{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#eef0f4}
+.browser .bar i{width:8px;height:8px;border-radius:50%;background:#c9ced8}
+.browser .bar span{margin-left:10px;font:500 10.5px var(--f-mono);color:#5b6170;background:#fff;padding:3px 12px;border-radius:999px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.browser img{display:block;width:100%;height:auto}
+.hero-frame{padding:clamp(28px,6vw,72px) clamp(18px,8vw,104px)}
+.typo{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;text-align:center;padding:24px}
+.typo b{font-family:var(--f-display);font-weight:900;font-size:clamp(44px,6.6vw,92px);letter-spacing:.06em;line-height:1}
+.typo span{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+.hero-typo{position:relative;aspect-ratio:16/7;max-width:100%}
+.cover.soon{display:grid;place-items:center;border:1px dashed var(--line);background:var(--surface)}
+.cover.soon span{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.meta{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:14px;padding-top:2px}
+.meta h3{font-size:clamp(20px,1.9vw,26px);font-weight:700;letter-spacing:-.03em;line-height:1.15;background-image:linear-gradient(currentColor,currentColor);background-size:0 1.5px;background-position:0 100%;background-repeat:no-repeat;transition:background-size .5s var(--ease);justify-self:start;padding-bottom:2px}
+.card:hover .meta h3{background-size:100% 1.5px}
+.meta .yr{color:var(--muted);font-family:var(--f-mono);font-size:12px;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);font-size:14.5px;margin-top:-10px}
+.card:disabled{cursor:default;color:inherit}
+.card[hidden]{display:none!important}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:12.5px;padding:5px 11px;border-radius:999px;background:var(--chip)}
+
+/* ---------- services : bande colorée ---------- */
+#services{padding-block:0}
+#services>.wrap{position:relative;background:var(--band);color:var(--on-band);border-radius:clamp(26px,3.4vw,44px);padding-block:clamp(56px,7vw,104px);overflow:hidden;max-width:calc(var(--max) + 2 * var(--gutter))}
+#services>.wrap::before{content:"";position:absolute;width:clamp(260px,34vw,520px);aspect-ratio:1;right:-8%;top:-18%;border-radius:50%;background:radial-gradient(circle,color-mix(in oklab,var(--blue) 55%,transparent),transparent 68%);pointer-events:none}
+#services .sec-head{position:relative;padding-inline:clamp(4px,2vw,24px)}
+#services .sec-head p{color:color-mix(in oklab,var(--on-band) 62%,var(--band));border-color:color-mix(in oklab,var(--on-band) 25%,var(--band))}
+#services .sec-head h2::after{color:var(--lime)}
+.svc{position:relative;border-top:1px solid color-mix(in oklab,var(--on-band) 18%,var(--band))}
+.svc-row{position:relative;isolation:isolate;display:block;padding:clamp(22px,2.6vw,34px) clamp(8px,2vw,28px);border-bottom:1px solid color-mix(in oklab,var(--on-band) 18%,var(--band));cursor:default;outline:none;transition:color .45s var(--ease)}
+.svc-row h3{font-size:clamp(22px,2.6vw,36px);font-weight:800;letter-spacing:-.045em;line-height:1;transition:transform .55s var(--ease),color .45s}
+.svc-row h3::before{content:"";display:inline-block;width:0;height:.46em;margin-right:0;color:var(--lime);background:var(--razor);vertical-align:.1em;transition:width .55s var(--ease),margin .55s var(--ease)}
+.svc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
+.svc-in{overflow:hidden;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 48px;align-content:start}
+.svc-in>*{opacity:0;transform:translateY(8px);transition:opacity .35s,transform .5s var(--ease)}
+.svc-l{grid-column:1;margin:16px 0 0;font-family:var(--f-display);font-weight:700;font-size:clamp(16px,1.35vw,18px);line-height:1.3;letter-spacing:-.02em}
+.svc-in p:not(.svc-l){grid-column:1;margin:0;font-size:15px;line-height:1.6;max-width:52ch;color:color-mix(in oklab,var(--on-band) 66%,var(--band))}
+.svc-in .chips{grid-column:2;grid-row:1 / span 2;align-self:end;justify-content:flex-start;margin-top:16px}
+.svc-row .chips span{background:transparent;border:1px solid color-mix(in oklab,var(--on-band) 22%,var(--band));color:color-mix(in oklab,var(--on-band) 80%,var(--band));font-family:var(--f-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em}
+/* état ouvert : survol, focus clavier ou ligne au centre de l'écran (tactile) */
+.svc-row:is(:hover,:focus-visible,.on) h3{transform:translateX(4px);color:var(--lime)}
+.svc-row:is(:hover,:focus-visible,.on) h3::before{width:.7em;margin-right:.28em}
+.svc-row:is(:hover,:focus-visible,.on) .svc-body{grid-template-rows:1fr}
+.svc-row:is(:hover,:focus-visible,.on) .svc-in>*{opacity:1;transform:none;transition-delay:.12s}
+#travaux{padding-bottom:clamp(96px,12vw,170px)}
+#apropos{padding-top:clamp(96px,12vw,170px)}
+
+/* ---------- about ---------- */
+.about{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(32px,7vw,112px);align-items:start}
+.about>.portrait{position:sticky;top:110px}
+.about h2{font-size:clamp(36px,4.8vw,68px);line-height:.98;font-weight:800;letter-spacing:-.045em;max-width:15ch}
+.about h2 span{color:var(--accent)}
+.story{display:grid;gap:18px;margin-top:30px;max-width:62ch}
+.more{display:grid;gap:18px}
+.more[hidden]{display:none}
+.more:not([hidden]){animation:rise .6s var(--ease) both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}}
+.read-more{justify-self:start;display:inline-flex;align-items:center;gap:8px;font:600 15px var(--f-body);color:var(--fg);background:none;border:0;padding:4px 0;cursor:pointer;background-image:linear-gradient(var(--accent),var(--accent));background-size:100% 1.5px;background-position:0 100%;background-repeat:no-repeat;transition:background-size .4s var(--ease)}
+.read-more:hover{background-size:40% 1.5px}
+.story p{margin:0;color:var(--muted);font-size:clamp(16.5px,1.3vw,18px);line-height:1.7}
+.story p.lead{color:var(--fg);font-family:var(--f-display);font-weight:700;font-size:clamp(22px,2.1vw,29px);line-height:1.28;letter-spacing:-.025em;padding-left:22px;position:relative}
+.story p.lead::before{content:"";position:absolute;left:0;top:.2em;bottom:.2em;width:2px;background:var(--hi)}
+.story b{color:var(--fg);font-weight:600}
+.story a{color:var(--on-hi);font-weight:600;text-decoration:none;background:var(--hi);border-radius:4px;padding:1px 5px;transition:background .25s}
+.story a:hover{background:color-mix(in oklab,var(--hi) 80%,var(--ink))}
+.about-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px}
+button.btn{font-family:var(--f-body)}
+
+/* ---------- contact ---------- */
+.contact{padding-block:var(--sec) 48px}
+.contact .big{font-size:clamp(60px,12.5vw,190px);line-height:.84;font-weight:900;letter-spacing:-.06em;margin-left:-.04em}
+.contact .big a{text-decoration:none;display:inline-flex;align-items:center;gap:.14em}
+.contact .big a>span:first-child{background-image:linear-gradient(currentColor,currentColor);background-size:0 .06em;background-position:0 96%;background-repeat:no-repeat;transition:background-size .7s var(--ease)}
+.contact .big a:hover>span:first-child{background-size:100% .06em}
+.contact .big .circ{display:inline-grid;place-items:center;width:.78em;height:.78em;border-radius:50%;background:var(--lime);color:var(--ink);font-size:.52em;transition:transform .6s var(--ease)}
+.contact .big a:hover .circ{transform:rotate(45deg) scale(1.05)}
+.contact-lede{max-width:44ch;color:var(--muted);font-size:clamp(17px,1.5vw,20px);margin:28px 0 0}
+.contact-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-block:26px 44px;color:var(--muted);font-size:13.5px}
+
+/* ---------- modal — case study ---------- */
+.modal{position:fixed;inset:0;z-index:50;background:color-mix(in oklab,var(--ink) 62%,transparent);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:grid;place-items:center;padding:16px;animation:fade .35s var(--ease)}
+@keyframes fade{from{opacity:0}}
+.sheet{position:relative;background:var(--bg);color:var(--fg);width:min(1000px,100%);max-height:92vh;overflow:auto;border-radius:var(--r-lg);box-shadow:0 40px 100px -30px #000a;animation:sheet .55s var(--ease)}
+@keyframes sheet{from{opacity:0;transform:translateY(28px) scale(.985)}}
+.hero-img{display:block;width:100%;max-height:72vh;object-fit:cover}
+.case{padding:clamp(24px,4.5vw,56px);display:grid;gap:30px}
+.case-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.case-head h3{font-size:clamp(32px,4.6vw,56px);font-weight:800;line-height:.98;letter-spacing:-.045em}
+.case-head h3::after{content:".";color:var(--accent)}
+.facts-row{display:flex;flex-wrap:wrap;gap:10px 36px;border-block:1px solid var(--line);padding-block:18px;margin:0}
+.facts-row div{display:flex;flex-direction:column;gap:3px}
+.facts-row dt{font-family:var(--f-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}
+.facts-row dd{margin:0;font-weight:500}
+.case .intro{font-family:var(--f-display);font-weight:500;font-size:clamp(19px,1.9vw,23px);line-height:1.45;letter-spacing:-.015em;max-width:56ch;margin:0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.kpis div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.kpis b{font-family:var(--f-display);font-weight:800;font-size:clamp(20px,2vw,26px);letter-spacing:-.03em;color:var(--fg)}
+.kpis span{color:var(--muted);font-size:13.5px;line-height:1.4}
+.blocks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 44px}
+.blocks>div{padding-top:16px;border-top:1px solid var(--line)}
+.blocks h4{font-size:17px;letter-spacing:-.02em;margin:0 0 6px;display:flex;gap:10px;align-items:center}
+.blocks h4::before{content:"";width:14px;height:10px;flex:none;color:var(--accent);background:var(--razor)}
+.blocks p{margin:0;color:var(--muted);font-size:15.5px}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.gallery img:first-child:nth-last-child(odd){grid-column:1/-1}
+.gallery.tall{grid-template-columns:repeat(3,minmax(0,1fr))}
+.gallery.tall img:first-child:nth-last-child(odd){grid-column:auto}
+.gallery img{width:100%;border-radius:12px;display:block;border:1px solid var(--line)}
+.sheet-links{display:flex;flex-wrap:wrap;gap:8px}
+.close{position:sticky;top:14px;float:right;margin:14px 14px -58px 0;z-index:4;width:44px;height:44px;border-radius:50%;border:0;background:var(--ivory);color:var(--ink);font-size:16px;cursor:pointer;box-shadow:0 6px 20px #0003;transition:transform .45s var(--ease)}
+.close:hover{transform:rotate(90deg)}
+.cform{gap:18px}
+.cf-title{font-size:clamp(28px,3.6vw,42px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.cf-title::after{content:".";color:var(--mauve)}
+.cf-intro{margin:8px 0 0;color:var(--muted)}
+.cform label{display:flex;flex-direction:column;gap:6px;font-size:13.5px;font-weight:600}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cform input:not([type=radio]),.cform textarea{font:400 16px var(--f-body);color:var(--fg);background:var(--surface);border:1px solid var(--line-2);border-radius:12px;padding:12px 14px;width:100%;transition:border-color .2s,box-shadow .2s}
+.cform input:focus,.cform textarea:focus{outline:none;border-color:var(--mauve);box-shadow:0 0 0 3px color-mix(in oklab,var(--mauve) 25%,transparent)}
+.cform textarea{resize:vertical;min-height:120px}
+.cf-types{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.cf-types legend{font-size:13.5px;font-weight:600;margin-bottom:8px;padding:0}
+.cf-types label{flex-direction:row;font-weight:500}
+.cf-types input{position:absolute;opacity:0;pointer-events:none}
+.cf-types span{padding:8px 14px;border:1px solid var(--line-2);border-radius:999px;cursor:pointer;transition:.2s}
+.cf-types input:checked+span{background:var(--mauve);border-color:var(--mauve);color:#fff}
+.cf-types input:focus-visible+span{outline:2px solid var(--mauve);outline-offset:2px}
+.cform .btn{justify-self:start}
+.cf-err{color:#c0392b;margin:0;font-size:14px}
+.cf-done{padding:16px 18px;border-radius:14px;background:color-mix(in oklab,var(--mauve) 10%,var(--bg));border:1px solid color-mix(in oklab,var(--mauve) 30%,var(--bg))}
+.cf-done p{margin:0}
+.cf-fb{margin-top:8px!important;color:var(--muted);font-size:14px}
+.cf-mail{font-weight:600;color:var(--fg);user-select:all}
+.cf-copy{font:600 12px var(--f-body);border:1px solid var(--line-2);background:var(--bg);color:var(--fg);border-radius:999px;padding:4px 10px;cursor:pointer;margin-left:4px}
+@media (max-width:620px){.cf-row{grid-template-columns:1fr}}
+.cert-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}
+.cert-card{margin:0;display:flex;flex-direction:column;gap:12px}
+.cert-card img{width:100%;border-radius:10px;border:1px solid var(--line);display:block;background:#fff;transition:transform .5s var(--ease)}
+.cert-card:hover img{transform:translateY(-3px)}
+.cert-card figcaption{display:flex;flex-direction:column;gap:5px}
+.cert-card .mono{color:var(--muted);font-size:10.5px}
+.cert-card b{font-weight:600;line-height:1.35}
+.cert-card a{font-size:14px;font-weight:600;color:var(--accent);text-decoration:none}
+
+/* ---------- scroll reveal (transform only: content stays visible) ---------- */
+.rv{transform:translateY(26px);transition:transform 1s var(--ease)}
+.rv.in{transform:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .nav ul{display:none}
+  .hero-grid,.about{grid-template-columns:1fr}
+  .hero .portrait.small-ph{max-width:240px;justify-self:start;margin-right:22px}
+  .about>.portrait{position:relative;top:0}
+  .sec-head{grid-template-columns:1fr}
+  .svc-in{grid-template-columns:1fr}
+  .svc-in .chips{grid-column:1;grid-row:auto;margin-top:14px}
+  .blocks,.gallery{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr 1fr}
+  .facts div:nth-child(3){grid-column:1/-1;border-left:0;padding-left:0;border-top:1px solid var(--line);margin-top:22px}
+}
+@media (max-width:620px){
+  :root{--sec:clamp(72px,18vw,96px)}
+  body{font-size:16.5px}
+  .nav-cta{display:none}
+  .nav-in{padding-left:18px}
+  .grid{grid-template-columns:1fr;gap:44px}
+  .card.off{margin-top:0}
+  .filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--gutter) * -1);padding-inline:var(--gutter);padding-bottom:4px}
+  .filters::-webkit-scrollbar{display:none}
+  .filters button{flex:none}
+  .card:nth-child(4n+1) .cover{aspect-ratio:4/5}
+  .facts{grid-template-columns:1fr}
+  .facts div{padding-right:0}
+  .facts div+div{padding-left:0;border-left:0;border-top:1px solid var(--line);margin-top:18px}
+  .facts div:nth-child(3){margin-top:18px}
+  .cert-grid{grid-template-columns:1fr}
+  .sticker{width:70px;height:70px;top:-16px;right:-16px}
+  .sticker span{font-size:20px}
+  .sec-head p{padding-left:14px}
+}
+@media (hover:none){.cover .view{opacity:1;transform:none;width:40px;height:40px;font-size:15px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.rv{transform:none}}
+
+/* ---------- assistant ---------- */
+.bot{position:fixed;right:clamp(14px,2vw,26px);bottom:calc(clamp(14px,2vw,26px) + env(safe-area-inset-bottom,0px));z-index:40;display:flex;flex-direction:column-reverse;align-items:flex-end;gap:12px}
+.bot-fab{display:inline-flex;align-items:center;gap:10px;font:600 14.5px var(--f-body);background:var(--mauve);color:#fff;border:0;border-radius:999px;padding:13px 20px 13px 16px;cursor:pointer;box-shadow:0 14px 34px -12px color-mix(in oklab,var(--mauve) 70%,#000);transition:transform .35s var(--ease)}
+.bot-fab:hover{transform:translateY(-2px)}
+.bot-dot{width:9px;height:9px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 0 #d9ff4a99;animation:pulse 2.4s infinite}
+.bot-panel{width:min(380px,calc(100vw - 28px));height:min(560px,calc(100vh - 120px));min-height:300px;display:flex;flex-direction:column;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 30px 80px -24px #10141f66;animation:sheet .45s var(--ease)}
+.bot-panel[hidden]{display:none}
+.bot-head{flex:none;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 18px;background:var(--mauve);color:#fff}
+.bot-head b{display:block;font-family:var(--f-display);font-size:17px;letter-spacing:-.02em}
+.bot-head span{font-size:12.5px;opacity:.85}
+.bot-x{width:34px;height:34px;border-radius:50%;border:0;background:#ffffff26;color:#fff;cursor:pointer;font-size:14px}
+.bot-log{flex:1;min-height:0;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;overscroll-behavior:contain}
+.bm{max-width:88%;padding:10px 14px;border-radius:16px;font-size:14.5px;line-height:1.5;animation:rise .35s var(--ease) both}
+.bm.from-bot{align-self:flex-start;background:var(--surface);border:1px solid var(--line);border-bottom-left-radius:6px}
+.bm.from-me{align-self:flex-end;background:var(--mauve);color:#fff;border-bottom-right-radius:6px}
+.bchips{display:flex;flex-wrap:wrap;gap:6px;animation:rise .35s var(--ease) both}
+.blabel{flex-basis:100%;font-size:11.5px;color:var(--muted);font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.bchip{font:500 13px/1.35 var(--f-body);text-align:left;color:var(--fg);background:transparent;border:1px solid color-mix(in oklab,var(--mauve) 40%,var(--line));border-radius:14px;padding:7px 12px;cursor:pointer;transition:background .2s,color .2s}
+.bchip:hover:not(:disabled){background:color-mix(in oklab,var(--mauve) 12%,var(--bg))}
+.bchip:disabled{opacity:.45;cursor:default}
+.bchip.cta{background:var(--mauve);color:#fff;border-color:var(--mauve)}
+.bchip.ghost{border-style:dashed}
+.bot-form{flex:none;display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+.bot-form input{flex:1;min-width:0;font:400 15px var(--f-body);color:var(--fg);background:var(--surface);border:1px solid var(--line-2);border-radius:999px;padding:10px 14px}
+.bot-form input:focus{outline:none;border-color:var(--mauve)}
+.bot-form button{font:600 13.5px var(--f-body);background:var(--ink);color:var(--ivory);border:0;border-radius:999px;padding:0 16px;cursor:pointer}
+@media (max-width:620px){.bot-fab span:last-child{display:none}.bot-fab{padding:14px}.bot-panel{height:min(520px,calc(100vh - 110px))}}
+</style>
+<header class="nav wrap">
+  <div class="nav-in">
+    <a class="logo" href="#top">occalm<b>.</b></a>
+    <ul>
+      <li><a href="#travaux" data-i18n="navWork">Travaux</a></li>
+      <li><a href="#services" data-i18n="navServices">Services</a></li>
+      <li><a href="#apropos" data-i18n="navAbout">À propos</a></li>
+    </ul>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Langue / Language">
+        <button type="button" id="lang-fr" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button type="button" class="theme-btn" id="theme-btn" aria-label="Mode sombre">
+        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="currentColor"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+      </button>
+      <a class="btn btn-ink nav-cta js-contact" href="#contact"><span data-i18n="navCta">Travaillons ensemble</span> <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <span class="status"><span class="pulse"></span><span data-i18n="status">Disponible pour de nouveaux projets</span></span>
+      <div class="hero-grid">
+        <div>
+          <h1>Oumaima<span class="dot">.</span>
+            <em data-i18n="heroSub"></em>
+          </h1>
+          <p class="lede" data-i18n="lede"></p>
+          <div class="hero-cta">
+            <a class="btn btn-hi" href="#travaux"><span data-i18n="ctaWork"></span> <span class="arrow">↘</span></a>
+            <a class="btn btn-ghost js-contact" href="#contact" data-i18n="ctaContact"></a>
+          </div>
+        </div>
+        <div class="portrait small-ph">
+          <img src="oumaima.jpg" alt="Oumaima, occalm.">
+          <div class="sticker" aria-hidden="true">
+            <svg viewBox="0 0 96 96"><defs><path id="c" d="M48,48 m-36,0 a36,36 0 1,1 72,0 a36,36 0 1,1 -72,0"/></defs><text fill="#f6f3ea" style="font:500 9px 'JetBrains Mono',monospace"><textPath href="#c" textLength="224" lengthAdjust="spacing" data-i18n="sticker">STRATÉGIE · CRÉATION · DIGITAL · </textPath></text></svg>
+            <span>o.</span>
+          </div>
+          <div class="tag"><strong>Oumaima Bourouh</strong><a class="tag-more" href="#apropos" data-i18n="tagMore"></a></div>
+        </div>
+      </div>
+      <div class="facts">
+        <div><b data-i18n="fact1t"></b><span data-i18n="fact1"></span></div>
+        <div><b data-i18n="fact2t"></b><span data-i18n="fact2"></span></div>
+        <div><b data-i18n="fact3t"></b><span data-i18n="fact3"></span></div>
+      </div>
+    </div>
+    <div class="marquee" aria-hidden="true">
+      <div class="track" id="track"></div>
+    </div>
+  </section>
+
+  <section id="travaux">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 data-i18n="workTitle"></h2>
+        <p data-i18n="workIntro">Une sélection de missions pour des marques, des studios, des associations et des entrepreneurs.</p>
+      </div>
+      <div class="filters" id="filters" role="group"></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 data-i18n="svcTitle"></h2>
+        <p data-i18n="svcIntro">Chaque mission peut être prise seule ou combinée dans un accompagnement complet.</p>
+      </div>
+      <div class="svc" id="svc"></div>
+    </div>
+  </section>
+
+  <section id="apropos">
+    <div class="wrap about">
+      <div class="portrait small-ph about-ph"><img src="oumaima.jpg" alt="Oumaima Bourouh"></div>
+      <div class="about-copy">
+        <h2 data-i18n="aboutTitle"></h2>
+        <div class="story">
+          <p class="lead" data-i18n="aboutLead"></p>
+          <div class="more" id="more" hidden>
+            <p data-i18n="aboutP1"></p>
+            <p data-i18n="aboutP1b"></p>
+            <p data-i18n="aboutP2"></p>
+            <p data-i18n="aboutP3"></p>
+          </div>
+          <button type="button" class="read-more" id="read-more" aria-expanded="false" aria-controls="more"></button>
+        </div>
+        <div class="about-cta">
+          <a class="btn btn-mauve js-contact" href="#contact"><span data-i18n="aboutCta"></span> <span class="arrow">↗</span></a>
+          <button type="button" class="btn btn-ghost" id="certs-btn"><span data-i18n="certBtn"></span> <span class="arrow">→</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2 class="big"><a class="js-contact" href="#contact"><span data-i18n="contactBig">Parlons-en</span> <span class="circ">↗</span></a></h2>
+      <p class="contact-lede" data-i18n="contactEyebrow"></p>
+      <div class="contact-row">
+        <a class="btn btn-hi js-contact" href="#contact"><span data-i18n="formOpen"></span> <span class="arrow">↗</span></a>
+        <a class="btn btn-ghost" href="https://occalm.com" target="_blank" rel="noopener">occalm.com <span class="arrow">↗</span></a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/company/35622418/" target="_blank" rel="noopener">LinkedIn <span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="wrap"><footer><span>© 2026 Oumaima · occalm.</span><span data-i18n="footer">Marketing digital · Maroc</span></footer></div>
+
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="m-title">
+  <div class="sheet sheet-wrap" id="sheet"></div>
+</div>
+
+<script>
+/* ===== TEXTES DU SITE (FR / EN) ===== */
+const I18N = {
+  fr: {
+    navWork:"Travaux", navServices:"Services", navAbout:"À propos", navCta:"Travaillons ensemble",
+    status:"Disponible pour de nouveaux projets",
+    heroSub:"Votre alliée pour <mark>une présence qui vous ressemble.</mark>",
+    lede:"J’accompagne les indépendants, entreprises et associations à construire une marque claire et à la faire grandir en ligne, de la stratégie jusqu’aux expériences digitales et aux supports qui donnent vie à leur image.",
+    ctaWork:"Voir mes projets", ctaContact:"Me contacter",
+    sticker:"STRATÉGIE · CRÉATION · DIGITAL · ", tagRole:"Stratégie · Création · Digital", tagMore:"Un peu plus sur moi →", country:"Maroc",
+    fact1t:"Projets variés", fact1:"Je travaille avec des entreprises, des associations et des indépendants.",
+    fact2t:"Approche 360°", fact2:"J’interviens sur la marque, le contenu, le web et les campagnes.",
+    fact3t:"Du brief au lancement", fact3:"J’accompagne chaque projet de la stratégie à la création, jusqu’au déploiement.",
+    workEyebrow:"Travaux sélectionnés", workTitle:"Projets sélectionnés", workIntro:"Une sélection de missions pour des marques, des studios, des associations et des entrepreneurs.",
+    svcEyebrow:"Ce que je fais", svcTitle:"Ce que je vous propose", svcIntro:"Survolez un service pour découvrir ce qu’il comprend. Chaque mission peut être prise seule ou combinée.",
+    aboutTitle:"Marketeuse de formation, <span>créative</span> par passion.",
+    aboutLead:"Il y a toujours eu deux Oumaima : celle qui veut comprendre pourquoi on choisit une marque, et celle qui ne peut pas s'empêcher de créer.",
+    aboutP1:"La première a fait un master en marketing et action commerciale à l'ENCG Kénitra, en enchaînant en parallèle les stages en marketing digital. Elle s'est ensuite forgée en agence chez Prigma et Thinline, avant de mettre la communication au service d'une cause avec Dar Zhor.",
+    aboutP1b:"La seconde a appris en autodidacte, petit à petit : Photoshop, Illustrator, After Effects, Figma… Créer et écrire, c'était surtout son passe-temps, qu'elle partageait sur <a href=\"https://www.instagram.com/ob.surd/\" target=\"_blank\" rel=\"noopener\">@ob.surd</a> et <a href=\"https://www.instagram.com/oumywall/\" target=\"_blank\" rel=\"noopener\">@oumywall</a>. Avec le recul, ces petites habitudes l'ont beaucoup aidée, bien avant l'arrivée de l'IA. Elle a aussi eu le plaisir de créer le branding de <a href=\"https://www.instagram.com/lilimade.crochet/\" target=\"_blank\" rel=\"noopener\">@lilimade.crochet</a>, le petit business de sa maman.",
+    aboutP2:"Je m'intéresse beaucoup à la philosophie, à la psychologie et à la mythologie. D'où le nom <b>occalm.</b> : <b>Occam</b>, dont le rasoir dit que l'explication la plus simple est souvent la bonne, et <b>au calme</b>, l'état d'esprit dans lequel j'aime avancer. Écouter, simplifier, puis créer ce qui marche.",
+    aboutP3:"Toujours en quête d'apprentissage, de belles rencontres et de projets qui ont du sens. Avec occalm., je mets tout ça au service de celles et ceux qui veulent grandir sans perdre ce qui les rend uniques.",
+    aboutCta:"Let's get in touch !", readMore:"Lire la suite", readLess:"Réduire", certBtn:"Découvrir mes certifications", certTitle:"Certifications", verify:"Vérifier le certificat",
+    contactEyebrow:"Une marque à lancer, une campagne à préparer ou un site à refaire ? Écrivez-moi, on en discute simplement.", contactBig:"Parlons-en", formOpen:"Écrire un message", formTitle:"Parlons de votre projet", formIntro:"Quelques mots suffisent, je vous réponds rapidement.", fName:"Votre nom", fEmail:"Votre e-mail", fType:"Votre besoin", fMsg:"Votre message", fSend:"Envoyer le message", fTypes:["Branding","Réseaux sociaux & contenu","Site web","Publicité","Autre"], fDone:"Votre application e-mail s'ouvre avec le message prêt à partir. Il ne reste qu'à cliquer sur Envoyer.", fFallback:"Rien ne s'ouvre ? Écrivez-moi directement :", fCopy:"Copier", fCopied:"Copié", fErr:"Merci d'indiquer votre nom, votre e-mail et un message.", footer:"Marketing digital · Maroc",
+    all:"Tous", soon:"Projet à venir", view:"Voir le projet ↗", open:"Ouvrir", close:"Fermer", filter:"Filtrer les projets",
+    client:"Client", agency:"Agence", period:"Période",
+    darkOn:"Activer le mode sombre", darkOff:"Activer le mode clair",
+    marquee:["Stratégie marketing","Branding","Création de contenu","Community management","Sites web","SEO","Ads","Affiches & print"]
+  },
+  en: {
+    navWork:"Work", navServices:"Services", navAbout:"About", navCta:"Let's work together",
+    status:"Available for new projects",
+    heroSub:"Your partner for <mark>a presence that feels like you.</mark>",
+    lede:"I help freelancers, companies and non-profits build a clear brand and grow it online, from strategy to the digital experiences and materials that bring their image to life.",
+    ctaWork:"See my work", ctaContact:"Get in touch",
+    sticker:"STRATEGY · CREATIVE · DIGITAL · ", tagRole:"Strategy · Creative · Digital", tagMore:"A little more about me →", country:"Morocco",
+    fact1t:"Varied projects", fact1:"I work with companies, non-profits and freelancers.",
+    fact2t:"360° approach", fact2:"I cover brand, content, web and campaigns.",
+    fact3t:"From brief to launch", fact3:"I guide every project from strategy to creation, all the way to roll-out.",
+    workEyebrow:"Selected work", workTitle:"Selected work", workIntro:"A selection of projects for brands, studios, non-profits and entrepreneurs.",
+    svcEyebrow:"What I do", svcTitle:"What I offer", svcIntro:"Hover over a service to see what it includes. Each one works on its own or combined.",
+    aboutTitle:"Marketer by training, <span>creative</span> by passion.",
+    aboutLead:"There have always been two Oumaimas: one who wants to understand why people choose a brand, and one who can't stop creating.",
+    aboutP1:"The first earned a master's in marketing and sales at ENCG Kénitra, taking digital marketing internships alongside her studies. She then sharpened her skills at agencies Prigma and Thinline, before putting communication to work for a cause at Dar Zhor.",
+    aboutP1b:"The second learned on her own, little by little: Photoshop, Illustrator, After Effects, Figma… Creating and writing were mostly a hobby, shared on <a href=\"https://www.instagram.com/ob.surd/\" target=\"_blank\" rel=\"noopener\">@ob.surd</a> and <a href=\"https://www.instagram.com/oumywall/\" target=\"_blank\" rel=\"noopener\">@oumywall</a>. Looking back, those habits helped her a lot, long before AI came along. She also had the joy of creating the branding for <a href=\"https://www.instagram.com/lilimade.crochet/\" target=\"_blank\" rel=\"noopener\">@lilimade.crochet</a>, her mum's small business.",
+    aboutP2:"I'm deeply interested in philosophy, psychology and mythology. Hence the name <b>occalm.</b>: <b>Occam</b>, whose razor says the simplest explanation is usually right, and <i>au calme</i>, French for calmly, the mindset I like to work in. Listen, simplify, then create what works.",
+    aboutP3:"Always hungry to learn, to meet great people and to work on projects that mean something. With occalm., I put all of this to work for people who want to grow without losing what makes them unique.",
+    aboutCta:"Let's get in touch!", readMore:"Read more", readLess:"Show less", certBtn:"See my certifications", certTitle:"Certifications", verify:"Verify certificate",
+    contactEyebrow:"A brand to launch, a campaign to plan or a website to rebuild? Write to me and we'll talk it through.", contactBig:"Let's talk", formOpen:"Send a message", formTitle:"Tell me about your project", formIntro:"A few words are enough, I'll get back to you quickly.", fName:"Your name", fEmail:"Your email", fType:"What you need", fMsg:"Your message", fSend:"Send message", fTypes:["Branding","Social media & content","Website","Advertising","Other"], fDone:"Your email app opens with the message ready. Just click Send.", fFallback:"Nothing opened? Email me directly:", fCopy:"Copy", fCopied:"Copied", fErr:"Please add your name, your email and a message.", footer:"Digital marketing · Morocco",
+    all:"All", soon:"Coming soon", view:"View project ↗", open:"Open", close:"Close", filter:"Filter projects",
+    client:"Client", agency:"Agency", period:"Period",
+    darkOn:"Switch to dark mode", darkOff:"Switch to light mode",
+    marquee:["Marketing strategy","Branding","Content creation","Community management","Websites","SEO","Ads","Posters & print"]
+  }
+};
+const CATS_EN = {"Ads":"Ads","Emailing":"Email marketing","Contenu":"Content","Influence":"Influencer marketing","Vidéo":"Video","Site web":"Website","Stratégie":"Strategy","Événementiel":"Events"};
+
+/* ===== PROJETS : chaque projet a sa version FR et sa version EN (champ en) ===== */
+const PROJECTS = [
+  {title:"Jacob Delafon Maroc", client:"Jacob Delafon Maroc", agency:"Prigma Agency", start:"2022-07", period:"Juillet – novembre 2022", year:"2022", img:"projets/jacob-delafon.jpg", imgPos:"50% 28%", gallery:["projets/jacob-rita.jpg","projets/jacob-blog.jpg","projets/jacob-feed-1.jpg","projets/jacob-feed-2.jpg"], cats:["Social media","Influence","SEO","Contenu"],
+   desc:"Faire connaître la marque au Maroc et amener des acheteurs qualifiés vers le site, en mission avec Prigma Agency.",
+   blocks:[
+     {h:"Influence", p:"Jeu concours #jesuisélégante avec l'influenceuse Rita Trendy."},
+     {h:"Calendrier & modération", p:"Calendrier éditorial d'octobre et novembre (visuels, textes, publicités et stories), modération des messages et commentaires sur Instagram et Messenger, prospects redirigés vers le site."},
+     {h:"SEO", p:"Mots-clés, balises et maillage interne du site web."},
+     {h:"Articles de blog", p:"Guides d'achat et conseils déco optimisés pour Google."}
+   ],
+   links:[{label:"Voir le post du jeu concours", url:"https://www.instagram.com/p/Cji8puHM_Jw/?img_index=4"},{label:"@jacobdelafonmaroc", url:"https://www.instagram.com/jacobdelafonmaroc/"}],
+   en:{title:"Jacob Delafon Morocco", period:"July – November 2022",
+     desc:"Building brand awareness in Morocco and driving qualified buyers to the website, working with Prigma Agency.",
+     blocks:[
+       {h:"Influencer marketing", p:"#jesuisélégante giveaway with influencer Rita Trendy."},
+       {h:"Calendar & moderation", p:"October and November editorial calendar (visuals, copy, ads and stories), moderation of messages and comments on Instagram and Messenger, leads redirected to the website."},
+       {h:"SEO", p:"Keywords, meta tags and internal linking for the website."},
+       {h:"Blog articles", p:"Buying guides and interior tips optimised for Google."}
+     ], links:["See the giveaway post","@jacobdelafonmaroc"]}},
+  {title:"Hype Media Studios", client:"Hype Media Studios", start:"2022-01", period:"Janvier – mai 2022", year:"2022", img:"projets/hype-media.jpg", imgPos:"62% 45%", cats:["Social media","Vidéo","Contenu","Branding"], gallery:["projets/hype-batucada.jpg","projets/hype-sound.jpg","projets/hype-dinner.jpg","projets/hype-singer.jpg","projets/hype-stage.jpg","projets/hype-projection.jpg","projets/hype-brandbook-1.jpg","projets/hype-brandbook-logo.jpg","projets/hype-brandbook-couleurs.jpg","projets/hype-hiring.jpg","projets/hype-quote-1.jpg","projets/hype-quote-2.jpg"],
+   desc:"Communication digitale d'un studio de production marocain en pleine transition (anciennement Louzine), et création de lbrands, mon format vidéo sur les marques marocaines.",
+   blocks:[
+     {h:"lbrands", p:"Concept, scripts et fiche technique. 4 épisodes tournés, que je présente."},
+     {h:"Communication digitale", p:"Sans tournage en cours, j'ai fait revivre les archives photo de Louzine en reels et publications."},
+     {h:"Brandbook", p:"Charte de marque : logo, typographies, palette et règles d'usage."},
+     {h:"Mise en scène", p:"Participation à plusieurs concepts vidéo."},
+     {h:"Talents", p:"Communication des appels à projets et des castings."}
+   ],
+   links:[{label:"@hypemediastudios", url:"https://www.instagram.com/hypemediastudios/"}],
+   en:{period:"January – May 2022",
+     desc:"Digital communication for a Moroccan production studio in transition (formerly Louzine), and creation of lbrands, my video series about Moroccan brands.",
+     blocks:[
+       {h:"lbrands", p:"Concept, scripts and technical sheet. 4 episodes filmed, which I host."},
+       {h:"Digital communication", p:"With no shoots underway, I brought Louzine's photo archive back to life as reels and posts."},
+       {h:"Brandbook", p:"Brand guidelines: logo, typefaces, palette and usage rules."},
+       {h:"Directing", p:"Helped direct several video concepts."},
+       {h:"Talent", p:"Communication for open calls and castings."}
+     ]}},
+  {title:"ZA : Hypnothérapeute et coach", client:"Zineb Ajar, hypnothérapeute & coach", start:"2025-10", period:"Fin 2025", year:"2025", img:"projets/zineb-ajar-main.jpg", frame:true, frameBg:"linear-gradient(135deg,#5e9a96 0%,#cfe3e0 55%,#f6dce9 100%)", cats:["Site web","SEO","UX"],
+   desc:"Site vitrine pour une hypnothérapeute et coach à Casablanca. Il fallait un site doux et rassurant, qui donne envie de prendre rendez-vous.",
+   blocks:[
+     {h:"Architecture", p:"Une page par public : patients en oncologie, enfants et adolescents, parents."},
+     {h:"Design", p:"Univers apaisant en vert d'eau et rose poudré, ton chaleureux à la première personne."},
+     {h:"Conversion", p:"Bouton « Prendre RDV » accessible depuis chaque page."},
+     {h:"SEO local", p:"Optimisé pour « hypnothérapeute Casablanca », avec blog et podcast."}
+   ],
+   gallery:["projets/zineb-page-4.jpg","projets/zineb-page-1.jpg","projets/zineb-page-2.jpg","projets/zineb-page-3.jpg","projets/zineb-ajar-3.jpg"],
+   links:[{label:"Voir le site zinebajar.com", url:"https://www.zinebajar.com/"}],
+   en:{title:"ZA: Hypnotherapist & coach", client:"Zineb Ajar, hypnotherapist & coach", period:"Late 2025",
+     desc:"Showcase website for a hypnotherapist and coach in Casablanca. The site had to feel gentle and reassuring, and make visitors want to book.",
+     blocks:[
+       {h:"Architecture", p:"One page per audience: oncology patients, children and teens, parents."},
+       {h:"Design", p:"Calming sea-green and powder-pink palette, warm first-person tone."},
+       {h:"Conversion", p:"\"Book an appointment\" button available on every page."},
+       {h:"Local SEO", p:"Optimised for \"hypnotherapist Casablanca\", with a blog and podcast."}
+     ], links:["Visit zinebajar.com"]}},
+  {title:"BaByliss Maroc", client:"BaByliss Maroc", start:"2023-04", period:"Avril – août 2023", year:"2023", img:"projets/babyliss-reel.jpg", imgPos:"50% 40%", gallery:["projets/babyliss-bio.jpg","projets/babyliss-highlights.jpg","projets/babyliss-grwm.jpg","projets/babyliss-imsouka.jpg","projets/babyliss-duo.jpg","projets/babyliss-duo-feed.jpg"], cats:["Social media","Influence","Ads","Contenu"],
+   desc:"Gestion complète de l'Instagram de BaByliss Maroc, du contenu jusqu'à la confirmation des commandes, et participation au tout premier lancement e-commerce de la marque au Maroc.",
+   blocks:[
+     {h:"Profil Instagram", p:"Nouvelle bio et highlights : Hairstyles, Icons, Products, Shopping, Community."},
+     {h:"Contenu & community management", p:"Création des posts et reels, animation de la communauté."},
+     {h:"Influence & Ads", p:"3 actions avec 2 influenceuses (@duojourneys, @imsouka) et campagnes Meta Ads. Le reel GRWM a dépassé 1 300 j'aime, avec de nombreuses demandes de prix en commentaires."},
+     {h:"Relation client", p:"Gestion des demandes et confirmation des commandes."},
+     {h:"Lancement e-commerce", p:"Participation à la stratégie du premier lancement e-commerce de BaByliss au Maroc. Résultat : plus de 70 % de ventes en plus depuis."}
+   ],
+   links:[{label:"babyliss.ma", url:"https://www.babyliss.ma/"},{label:"@babyliss_maroc", url:"https://www.instagram.com/babyliss_maroc/"},{label:"Reel GRWM · @duojourneys", url:"https://www.instagram.com/reel/CrUA93EM66c/"},{label:"Reel duo", url:"https://www.instagram.com/reel/CtHketwOx9R/"},{label:"Post · @imsouka", url:"https://www.instagram.com/p/Ct91UvvsuQl/"}],
+   en:{title:"BaByliss Morocco", client:"BaByliss Morocco", period:"April – August 2023",
+     desc:"Full management of BaByliss Morocco's Instagram, from content creation to order confirmation, and a role in the brand's very first e-commerce launch in Morocco.",
+     blocks:[
+       {h:"Instagram profile", p:"New bio and highlights: Hairstyles, Icons, Products, Shopping, Community."},
+       {h:"Content & community management", p:"Posts and reels, community engagement."},
+       {h:"Influencers & Ads", p:"3 activations with 2 influencers (@duojourneys, @imsouka) and Meta Ads campaigns. The GRWM reel passed 1,300 likes, with many price requests in the comments."},
+       {h:"Customer care", p:"Handling enquiries and confirming orders."},
+       {h:"E-commerce launch", p:"Contributed to the strategy for BaByliss's first e-commerce launch in Morocco. Result: over 70% more sales since."}
+     ]}},
+  {title:"U-Report Morocco", client:"U-Report Morocco (UNICEF)", start:"2023-07", period:"8 juillet – 12 août 2023", year:"2023", img:"projets/ureport-visuel.jpg", imgPos:"50% 50%", cats:["Social media","Community management","Contenu"],
+   desc:"U-Report est la plateforme de l'UNICEF qui donne la parole aux jeunes. J'ai géré sa communication digitale au Maroc pendant la caravane d'été.",
+   blocks:[
+     {h:"Communication digitale", p:"Contenus Instagram de la caravane U-Report à travers 15 villes du Maroc, de Tanger à Agadir, autour de #TaVoixCompte."},
+     {h:"Community management", p:"Animation de la communauté, réponses aux messages et commentaires."},
+     {h:"Inscriptions", p:"Suivi et recensement des nouveaux U-Reporters inscrits."}
+   ],
+   gallery:["projets/ureport-feed-1.jpg","projets/ureport-feed-2.jpg","projets/ureport-tetouan.jpg","projets/ureport-tanger.jpg","projets/ureport-oujda.jpg","projets/ureport-post.jpg","projets/ureport-azilal.jpg","projets/ureport-marrakech.jpg","projets/ureport-casa.jpg","projets/ureport-agadir.jpg"],
+   links:[{label:"@_ureportmorocco_", url:"https://www.instagram.com/_ureportmorocco_/"}],
+   en:{period:"8 July – 12 August 2023",
+     desc:"U-Report is UNICEF's platform that gives young people a voice. I ran its digital communication in Morocco during the summer caravan.",
+     blocks:[
+       {h:"Digital communication", p:"Instagram content for the U-Report caravan across 15 Moroccan cities, from Tangier to Agadir, around #TaVoixCompte."},
+       {h:"Community management", p:"Community engagement, replies to messages and comments."},
+       {h:"Sign-ups", p:"Tracking and recording new U-Reporter registrations."}
+     ]}},
+  {title:"Guinot Maroc", client:"Guinot Maroc (Pélissard)", start:"2023-04", period:"Avril – octobre 2023 · vidéos en 2026", year:"2023", img:"projets/guinot.jpg", imgPos:"40% 50%", gallery:["projets/guinot-event.jpg","projets/guinot-feed.jpg","projets/guinot-video-1.jpg","projets/guinot-video-2.jpg","projets/guinot-rappel.jpg","projets/guinot-dermaliss.jpg","projets/guinot-qa.jpg","projets/guinot-masque.jpg"], cats:["Social media","Community management","Événementiel","Vidéo"],
+   desc:"Communication digitale de Guinot, référence des soins en institut, représentée au Maroc par Pélissard.",
+   blocks:[
+     {h:"Réseaux sociaux", p:"Ligne éditoriale et contenus Instagram autour des soins et des produits."},
+     {h:"Community management", p:"Animation de la communauté, réponses aux messages et commentaires."},
+     {h:"Lancement Visible Age Reverse", p:"Communication digitale de l'événement de lancement du nouveau soin anti-âge au Maroc."},
+     {h:"Vidéos 2026", p:"Deux vidéos avec la formatrice Guinot Sanaa Ghazi Labassi : le soin Équilibre Pureté réalisé sur moi, en deux parties, pour le faire découvrir."}
+   ],
+   links:[{label:"pelissard.com · Guinot", url:"http://pelissard.com/"},{label:"@guinot_maroc", url:"https://www.instagram.com/guinot_maroc/"},{label:"Facebook", url:"https://www.facebook.com/GuinotMaroc/"}],
+   en:{title:"Guinot Morocco", client:"Guinot Morocco (Pélissard)", period:"April – October 2023 · videos in 2026",
+     desc:"Digital communication for Guinot, the reference in salon skincare, represented in Morocco by Pélissard.",
+     blocks:[
+       {h:"Social media", p:"Editorial line and Instagram content around treatments and products."},
+       {h:"Community management", p:"Community engagement, replies to messages and comments."},
+       {h:"Visible Age Reverse launch", p:"Digital communication for the launch event of the new anti-ageing treatment in Morocco."},
+       {h:"2026 videos", p:"Two videos with Guinot trainer Sanaa Ghazi Labassi: the Équilibre Pureté treatment performed on me, in two parts, to showcase it."}
+     ]}},
+  {title:"Association Dar Zhor", client:"Association Dar Zhor", start:"2023-03", sortKey:"9999", period:"Mars 2023 – aujourd'hui", year:"2023 →", img:"projets/darzhor-cover.jpg", imgPos:"55% 50%", gallery:["projets/darzhor-profil.jpg","projets/darzhor-feed-8.jpg","projets/darzhor-feed-7.jpg","projets/darzhor-feed-6.jpg","projets/darzhor-feed-5.jpg","projets/darzhor-feed-4.jpg","projets/darzhor-feed-3.jpg","projets/darzhor-feed-2.jpg","projets/darzhor-feed-1.jpg"],
+   stats:[{n:"2 000 → 12 800", l:"abonnés Instagram"},{n:"0 → 19 000", l:"abonnés TikTok, compte créé de zéro"},{n:"10 → 1 000", l:"abonnés YouTube"},{n:"3 000 → 5 300", l:"abonnés LinkedIn"},{n:"8+", l:"campagnes nationales de sensibilisation, des millions de personnes touchées chaque année"}], cats:["Social media","Branding","Print","Site web","Ads","Événementiel"],
+   desc:"Dar Zhor accompagne gratuitement les personnes touchées par un cancer à Casablanca. Je pilote l'ensemble de sa communication, du digital à l'imprimé, et j'ai fait grandir sa communauté sur tous les réseaux.",
+   blocks:[
+     {h:"Digital & community management", p:"Contenus, réseaux sociaux et animation de la communauté sur Instagram, TikTok, YouTube et LinkedIn."},
+     {h:"Campagnes de sensibilisation", p:"Plus de 8 campagnes nationales en ligne sur les cancers (sein, col de l'utérus, colorectal, poumon…) et sur l'importance des soins de support."},
+     {h:"Branding des campagnes", p:"Identité visuelle des campagnes et des événements de l'association."},
+     {h:"Print & documents", p:"Affiches, flyers, supports imprimés, rapports et mise en page."},
+     {h:"Site web", p:"Gestion du site darzhor.ma et pilotage de sa refonte."},
+     {h:"Ads", p:"Campagnes publicitaires pour la visibilité et les événements."},
+     {h:"Événements", p:"Communication et gestion des inscriptions."}
+   ],
+   links:[{label:"darzhor.ma", url:"https://darzhor.ma/"},{label:"Instagram", url:"https://www.instagram.com/dar_zhor/"},{label:"Facebook", url:"https://www.facebook.com/Darzhor/"},{label:"LinkedIn", url:"https://www.linkedin.com/company/association-dar-zhor"},{label:"YouTube", url:"https://www.youtube.com/channel/UCMt6UtIIZeAhNi--8BFEgNA"}],
+   en:{title:"Dar Zhor Association", client:"Dar Zhor Association", period:"March 2023 – present", stats:[{n:"2,000 → 12,800", l:"Instagram followers"},{n:"0 → 19,000", l:"TikTok followers, account built from scratch"},{n:"10 → 1,000", l:"YouTube subscribers"},{n:"3,000 → 5,300", l:"LinkedIn followers"},{n:"8+", l:"national awareness campaigns, reaching millions of people every year"}],
+     desc:"Dar Zhor provides free support to people affected by cancer in Casablanca. I lead all of its communication, from digital to print, and grew its community across every platform.",
+     blocks:[
+       {h:"Digital & community management", p:"Content, social media and community engagement on Instagram, TikTok, YouTube and LinkedIn."},
+       {h:"Awareness campaigns", p:"8+ national online campaigns on cancers (breast, cervical, colorectal, lung…) and on the importance of supportive care."},
+       {h:"Campaign branding", p:"Visual identity for the association's campaigns and events."},
+       {h:"Print & documents", p:"Posters, flyers, printed materials, reports and layout."},
+       {h:"Website", p:"Managing darzhor.ma and leading its redesign."},
+       {h:"Ads", p:"Paid campaigns for awareness and events."},
+       {h:"Events", p:"Event communication and registration management."}
+     ]}},
+  {title:"YM Africa", client:"YM Africa", start:"", year:"", img:"projets/startup-elhammal.jpg", imgPos:"50% 50%", cats:["Contenu","Social media","SEO","Emailing","Ads"],
+   gallery:["projets/ym-site-startup.jpg","projets/ym-site-mba.jpg","projets/ym-site-stagiaires.jpg","projets/startup-zaoui.jpg","projets/startup-ammor.jpg","projets/yassamine-post.jpg"],
+   galleryTall:["projets/stagiaires-c.jpg","projets/stagiaires-a.jpg","projets/yassamine-story.jpg"],
+   desc:"Communication digitale de trois plateformes du groupe YM Africa : Startup.ma, Stagiaires.ma et MBA.ma, chacune avec son public et son ton.",
+   blocks:[
+     {h:"Contenu & pages", p:"Création de contenu et gestion des pages de chaque plateforme, selon ses spécificités."},
+     {h:"Gestion des sites", p:"Ajout de nouvelles pages et alimentation des sites, actualisation des événements et recueil des données des fondateurs."},
+     {h:"Référencement", p:"Gestion du référencement naturel (SEO) des trois sites."},
+     {h:"Articles", p:"Rédaction d'articles pour les sites Startup.ma, Stagiaires.ma et MBA.ma."},
+     {h:"Emailing & newsletters", p:"Campagnes d'emailing pour les clients de la startup, dont des écoles privées, et newsletters régulières."},
+     {h:"Visuels publicitaires", p:"Visuels pour les campagnes des clients, comme les tests d'admission de l'École Yassamine, et proposition de nouveaux styles visuels pour les pages."},
+     {h:"Modération", p:"Gestion des messages et des commentaires sur les pages."}
+   ],
+   en:{
+     desc:"Digital communication for three YM Africa platforms: Startup.ma, Stagiaires.ma and MBA.ma, each with its own audience and tone.",
+     blocks:[
+       {h:"Content & pages", p:"Content creation and page management for each platform, tailored to its needs."},
+       {h:"Website management", p:"Adding and populating new pages, updating events and collecting founders' data."},
+       {h:"SEO", p:"Managing the organic search (SEO) of all three websites."},
+       {h:"Articles", p:"Writing articles for the Startup.ma, Stagiaires.ma and MBA.ma websites."},
+       {h:"Emailing & newsletters", p:"Email campaigns for the startup's clients, including private schools, and regular newsletters."},
+       {h:"Ad visuals", p:"Visuals for client campaigns, such as Yassamine School's admission tests, and proposals for new visual styles for the pages."},
+       {h:"Moderation", p:"Handling messages and comments on the pages."}
+     ]}},
+];
+
+// Services : textes repris de occalm.com
+const SERVICES = [
+  {t:"Identité de marque", l:"Construisez une identité claire, professionnelle et reconnaissable.",
+   d:"Je vous aide à dire ce que vous faites, à qui et pourquoi cela compte, puis je vous donne une image que l'on reconnaît partout.",
+   tags:["Identité de marque","Identité visuelle","Création de logo","Charte graphique","Direction créative","Supports de communication"],
+   en:{t:"Brand identity", l:"Build a clear, professional and recognisable identity.",
+     d:"I help you say what you do, for whom and why it matters, then give you an image people recognise everywhere.",
+     tags:["Brand identity","Visual identity","Logo design","Brand guidelines","Creative direction","Communication materials"]}},
+  {t:"Réseaux sociaux & contenu", l:"Restez présent, utile et facile à retenir.",
+   d:"Je planifie vos publications, je crée les visuels et les vidéos, et je gère le quotidien pour que vos pages restent vivantes.",
+   tags:["Stratégie réseaux sociaux","Gestion des réseaux sociaux","Création de contenu","Contenus graphiques","Rédaction","Community management","Photographie","Production vidéo","Vidéo courte"],
+   en:{t:"Social media & content", l:"Stay present, useful and easy to remember.",
+     d:"I plan your posts, create the visuals and videos, and handle the day-to-day so your pages stay alive.",
+     tags:["Social media strategy","Social media management","Content creation","Graphic content","Copywriting","Community management","Photography","Video production","Short-form video"]}},
+  {t:"Publicité digitale", l:"Touchez les bonnes personnes avec des campagnes ciblées.",
+   d:"Je choisis qui doit vous voir, je crée les annonces, je surveille le budget et je vous dis ce que chaque campagne a rapporté.",
+   tags:["Meta Ads","Google Ads","Stratégie de campagne","Campagnes de trafic","Campagnes de notoriété","Campagnes de leads","Optimisation des campagnes","Rapports de performance"],
+   en:{t:"Digital advertising", l:"Reach the right people with targeted campaigns.",
+     d:"I choose who should see you, create the ads, watch the budget and tell you what each campaign delivered.",
+     tags:["Meta Ads","Google Ads","Campaign strategy","Traffic campaigns","Awareness campaigns","Lead campaigns","Campaign optimisation","Performance reports"]}},
+  {t:"Site web & développement", l:"Un site qui explique votre activité et invite à agir.",
+   d:"Je conçois et développe des sites rapides, pensés mobile d'abord, où le visiteur comprend votre offre et sait quoi faire ensuite.",
+   tags:["Sites professionnels","Sites vitrines","Landing pages","Design UX/UI","Développement web","Mises à jour","Maintenance","SEO de base"],
+   en:{t:"Website & development", l:"A website that explains your business and invites action.",
+     d:"I design and build fast, mobile-first websites where visitors understand your offer and know what to do next.",
+     tags:["Business websites","Showcase websites","Landing pages","UX/UI design","Web development","Updates","Maintenance","Basic SEO"]}},
+  {t:"Génération de leads & CRM", l:"Attirez de nouveaux prospects et suivez chaque opportunité.",
+   d:"Je mets en place les campagnes, pages, formulaires et outils nécessaires pour générer des demandes, centraliser vos contacts et suivre chaque opportunité.",
+   tags:["Campagnes de génération de leads","Formulaires de contact","Landing pages","Mise en place du CRM","Organisation des leads","Pipelines commerciaux","Systèmes de suivi","Automatisations simples"],
+   en:{t:"Lead generation & CRM", l:"Attract new prospects and track every opportunity.",
+     d:"I set up the campaigns, pages, forms and tools you need to generate enquiries, centralise your contacts and follow every opportunity.",
+     tags:["Lead generation campaigns","Contact forms","Landing pages","CRM setup","Lead organisation","Sales pipelines","Tracking systems","Simple automations"]}},
+];
+
+/* ===== PARCOURS : à compléter (formation & expériences) ===== */
+const TIMELINE = [
+  {when:"Aujourd'hui", what:"Fondatrice, occalm.", where:"Agence de marketing digital · Maroc", kind:"Expérience",
+   en:{when:"Today", what:"Founder, occalm.", where:"Digital marketing agency · Morocco", kind:"Experience"}},
+  {when:"2023 →", what:"Communication digitale & print, Association Dar Zhor", where:"Casablanca", kind:"Expérience",
+   en:{when:"2023 →", what:"Digital & print communication, Dar Zhor Association", where:"Casablanca", kind:"Experience"}},
+  {when:"—", what:"Thinline", where:"Agence digitale · Rabat", kind:"Expérience",
+   en:{when:"—", what:"Thinline", where:"Digital agency · Rabat", kind:"Experience"}},
+  {when:"2022", what:"Prigma Agency", where:"Agence digitale · Casablanca", kind:"Expérience",
+   en:{when:"2022", what:"Prigma Agency", where:"Digital agency · Casablanca", kind:"Experience"}},
+  {when:"2017 – 2022", what:"Master, Marketing & action commerciale", where:"ENCG Kénitra · nombreux stages pendant le cursus", kind:"Formation",
+   en:{when:"2017 – 2022", what:"Master's, Marketing & Sales", where:"ENCG Kénitra · many internships along the way", kind:"Education"}},
+];
+
+const CERTS = [
+  {what:"Formation & accompagnement des associations au financement collaboratif", en:"Crowdfunding training & support for non-profits", by:"KiwiCollecte × Fondation Hanns Seidel", date:"Nov. 2025", img:"certifs/kiwicollecte.jpg"},
+  {what:"Think Outside the Inbox: Email Marketing", by:"Google · Coursera", date:"Dec. 2022", img:"certifs/google-email.jpg", url:"https://coursera.org/verify/8XCT7YFPLNH5"},
+  {what:"From Likes to Leads: Interact with Customers Online", by:"Google · Coursera", date:"Dec. 2022", img:"certifs/google-likes-leads.jpg", url:"https://coursera.org/verify/WL684B6HWYPL"},
+  {what:"Activer et concevoir sa stratégie média digitale", en:"Designing and activating a digital media strategy", by:"LinkedIn Learning", date:"Nov. 2022", img:"certifs/linkedin-media.jpg"},
+  {what:"Attract and Engage Customers with Digital Marketing", by:"Google · Coursera", date:"Sep. 2022", img:"certifs/google-attract.jpg", url:"https://coursera.org/verify/FVXUSARXSVKX"},
+  {what:"Foundations of Digital Marketing and E-commerce", by:"Google · Coursera", date:"Jun. 2022", img:"certifs/google-foundations.jpg", url:"https://coursera.org/verify/VLE7VSZ3UYKL"},
+];
+
+// Tri chronologique : sortKey "9999" = mission en cours (en premier), puis du plus récent au plus ancien, projets à venir à la fin
+PROJECTS.sort((a, b) => (b.sortKey || b.start || "").localeCompare(a.sortKey || a.start || ""));
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+
+let lang = store.get("lang") === "en" ? "en" : "fr";
+const t = k => I18N[lang][k];
+const cat = c => lang === "en" ? (CATS_EN[c] || c) : c;
+// Version localisée d'un projet : les champs "en" remplacent les champs FR
+function loc(p) {
+  if (lang !== "en" || !p.en) return p;
+  const e = p.en;
+  return { ...p, ...e,
+    links: p.links && p.links.map((l, i) => ({ ...l, label: (e.links && e.links[i]) || l.label })),
+    typo: p.typo && { ...p.typo, small: e.typoSmall || p.typo.small } };
+}
+const real = p => !!(p.img || p.typo);
+
+const browser = p => `<div class="browser"><div class="bar"><i></i><i></i><i></i><span>${esc(p.frameUrl || (p.links && p.links[0] ? p.links[0].url : "").replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, ""))}</span></div>${(p.frameImgs || [p.img]).map(src => `<img src="${esc(src)}" alt="${esc(p.client)}" loading="lazy">`).join("")}</div>`;
+const typo = p => `<div class="typo" style="background:${p.typo.bg};color:${p.typo.fg}"><b>${esc(p.typo.big)}</b><span>${esc(p.typo.small)}</span></div>`;
+const view = () => `<span class="view" aria-hidden="true">↗</span>`;
+const cover = p => p.typo
+  ? `<div class="cover"><div class="art">${typo(p)}</div>${view()}</div>`
+  : p.frame
+  ? `<div class="cover framed"><div class="art" style="background:${p.frameBg}">${browser(p)}</div>${view()}</div>`
+  : p.img
+  ? `<div class="cover"><div class="art"><img src="${esc(p.img)}" alt="${esc(p.client)}" style="object-position:${esc(p.imgPos || "50% 50%")}" loading="lazy"></div>${view()}</div>`
+  : `<div class="cover soon"><span>${t("soon")}</span></div>`;
+
+function renderStatic() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(el => { el.innerHTML = t(el.dataset.i18n); });
+  document.querySelectorAll("[data-lang]").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+  $("#track").innerHTML = [...t("marquee"), ...t("marquee")].map(w => `<span>${esc(w)}</span>`).join("");
+  $("#filters").setAttribute("aria-label", t("filter"));
+  updateThemeLabel();
+}
+
+function renderProjects() {
+  $("#grid").innerHTML = PROJECTS.map((raw, i) => { const p = loc(raw); return `
+  <button class="card" data-i="${i}" data-cats="${esc(p.cats.join("|"))}" ${real(p) ? `aria-label="${t("open")} ${esc(p.title)}"` : "disabled"}>
+    ${cover(p)}
+    <div class="meta"><h3>${esc(real(p) ? p.title : t("soon"))}</h3>${p.year ? `<span class="yr">${esc(p.year)}</span>` : ""}</div>
+    ${real(p) ? `<span class="sub">${p.cats.map(c => esc(cat(c))).join(" · ")}</span>` : ""}
+  </button>`; }).join("");
+  const cats = ["*", ...new Set(PROJECTS.filter(real).flatMap(p => p.cats))];
+  $("#filters").innerHTML = cats.map((c, i) => `<button type="button" aria-pressed="${i === 0}" data-c="${esc(c)}">${esc(c === "*" ? t("all") : cat(c))}</button>`).join("");
+}
+$("#filters").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  document.querySelectorAll("#filters button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  document.querySelectorAll(".card").forEach(card => {
+    card.hidden = !(b.dataset.c === "*" || card.dataset.cats.split("|").includes(b.dataset.c));
+  });
+  stagger();
+});
+
+// Services : sur écran tactile, la ligne au centre de l'écran s'ouvre pendant le scroll
+let svcObs;
+function watchServices() {
+  if (!matchMedia("(hover: none)").matches || !("IntersectionObserver" in window)) return;
+  svcObs && svcObs.disconnect();
+  svcObs = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle("on", e.isIntersecting)), { rootMargin: "-42% 0px -42% 0px" });
+  document.querySelectorAll(".svc-row").forEach(r => svcObs.observe(r));
+}
+
+// décalage d'une colonne sur deux (grille moins symétrique)
+function stagger() { [...document.querySelectorAll(".card:not([hidden])")].forEach((c, k) => c.classList.toggle("off", k % 2 === 1)); }
+
+// modal
+const modal = $("#modal"); let lastFocus, openIndex = -1;
+function openProject(i) {
+  const p = loc(PROJECTS[i]); openIndex = i;
+  if (modal.hidden) lastFocus = document.activeElement;
+  const fact = (k, v) => v ? `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>` : "";
+  $("#sheet").innerHTML = `<button class="close" id="close" aria-label="${t("close")}">✕</button>
+    ${p.typo ? `<div class="hero-typo">${typo(p)}</div>` : p.frame ? `<div class="hero-frame" style="background:${p.frameBg}">${browser(p)}</div>` : p.img ? `<img class="hero-img" src="${esc(p.img)}" alt="${esc(p.client)}" style="object-position:${esc(p.imgPos || "50% 50%")}">` : ""}
+    <div class="case">
+      <div class="case-head"><h3 id="m-title">${esc(p.title)}</h3><div class="chips">${p.cats.map(c => `<span>${esc(cat(c))}</span>`).join("")}</div></div>
+      <dl class="facts-row">${fact(t("client"), p.client)}${fact(t("agency"), p.agency)}${fact(t("period"), p.period || p.year)}</dl>
+      <p class="intro">${esc(p.desc)}</p>
+      ${p.stats ? `<div class="kpis">${p.stats.map(k => `<div><b>${esc(k.n)}</b><span>${esc(k.l)}</span></div>`).join("")}</div>` : ""}
+      ${p.blocks ? `<div class="blocks">${p.blocks.map(b => `<div><h4>${esc(b.h)}</h4><p>${esc(b.p)}</p></div>`).join("")}</div>` : ""}
+      ${p.gallery ? `<div class="gallery${p.tall ? " tall" : ""}">${p.gallery.map(g => `<img src="${esc(g)}" alt="" loading="lazy">`).join("")}</div>` : ""}
+      ${p.galleryTall ? `<div class="gallery tall">${p.galleryTall.map(g => `<img src="${esc(g)}" alt="" loading="lazy">`).join("")}</div>` : ""}
+      ${p.links ? `<div class="sheet-links">${p.links.map(l => `<a class="btn btn-ghost" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} <span class="arrow">↗</span></a>`).join("")}</div>` : ""}
+    </div>`;
+  modal.hidden = false; document.documentElement.style.overflow = "hidden"; $("#close").focus();
+}
+const CONTACT_EMAIL = "ouma.bourouh@gmail.com";
+function openContact() {
+  if (modal.hidden) lastFocus = document.activeElement; openIndex = -3;
+  $("#sheet").innerHTML = `<button class="close" id="close" aria-label="${t("close")}">✕</button>
+    <form class="case cform" id="cform" novalidate>
+      <div><h3 id="m-title" class="cf-title">${t("formTitle")}</h3><p class="cf-intro">${t("formIntro")}</p></div>
+      <div class="cf-row"><label>${t("fName")}<input id="cf-name" name="name" autocomplete="name" required></label>
+      <label>${t("fEmail")}<input id="cf-email" name="email" type="email" autocomplete="email" required></label></div>
+      <fieldset class="cf-types"><legend>${t("fType")}</legend>${t("fTypes").map((x, i) => `<label><input type="radio" name="type" value="${esc(x)}" ${i === 0 ? "checked" : ""}><span>${esc(x)}</span></label>`).join("")}</fieldset>
+      <label>${t("fMsg")}<textarea id="cf-msg" name="msg" rows="5" required></textarea></label>
+      <p class="cf-err" id="cf-err" hidden>${t("fErr")}</p>
+      <button class="btn btn-mauve" type="submit">${t("fSend")} <span class="arrow">↗</span></button>
+      <div class="cf-done" id="cf-done" hidden><p>${t("fDone")}</p><p class="cf-fb">${t("fFallback")} <span class="cf-mail" id="cf-mail">${CONTACT_EMAIL}</span> <button type="button" class="cf-copy" id="cf-copy">${t("fCopy")}</button></p></div>
+    </form>`;
+  modal.hidden = false; document.documentElement.style.overflow = "hidden"; $("#cf-name").focus();
+  $("#cform").addEventListener("submit", e => {
+    e.preventDefault();
+    const f = e.target, name = f.name.value.trim(), email = f.email.value.trim(), msg = f.msg.value.trim(), type = f.type.value;
+    if (!name || !email.includes("@") || !msg) { $("#cf-err").hidden = false; return; }
+    $("#cf-err").hidden = true;
+    const subject = `Portfolio · ${type} · ${name}`;
+    const body = `${msg}\n\n—\n${name}\n${email}`;
+    const a = document.createElement("a");
+    a.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    document.body.appendChild(a); a.click(); a.remove();
+    $("#cf-done").hidden = false;
+  });
+  $("#cf-copy").addEventListener("click", () => {
+    const b = $("#cf-copy");
+    navigator.clipboard.writeText(CONTACT_EMAIL).then(() => { b.textContent = t("fCopied"); }).catch(() => { const r = document.createRange(); r.selectNodeContents($("#cf-mail")); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); });
+  });
+}
+document.addEventListener("click", e => { const c = e.target.closest(".js-contact"); if (c) { e.preventDefault(); openContact(); } });
+function openCerts() {
+  if (modal.hidden) lastFocus = document.activeElement;
+  openIndex = -2;
+  $("#sheet").innerHTML = `<button class="close" id="close" aria-label="${t("close")}">✕</button>
+    <div class="case"><div class="case-head"><h3 id="m-title">${t("certTitle")}</h3></div>
+    <div class="cert-grid">${CERTS.map(c => `<figure class="cert-card"><img src="${esc(c.img)}" alt="${esc(c.what)}" loading="lazy"><figcaption><span class="mono">${esc(c.date)} · ${esc(c.by)}</span><b>${esc(lang === "en" && c.en ? c.en : c.what)}</b>${c.url ? `<a href="${esc(c.url)}" target="_blank" rel="noopener">${t("verify")} ↗</a>` : ""}</figcaption></figure>`).join("")}</div></div>`;
+  modal.hidden = false; document.documentElement.style.overflow = "hidden"; $("#close").focus();
+}
+$("#certs-btn").addEventListener("click", openCerts);
+function closeModal() { modal.hidden = true; document.documentElement.style.overflow = ""; openIndex = -1; lastFocus && lastFocus.focus(); }
+$("#grid").addEventListener("click", e => { const c = e.target.closest(".card"); if (c && !c.disabled) openProject(+c.dataset.i); });
+modal.addEventListener("click", e => { if (e.target === modal || e.target.id === "close") closeModal(); });
+addEventListener("keydown", e => { if (e.key === "Escape" && !modal.hidden) closeModal(); });
+
+function renderLists() {
+  $("#svc").innerHTML = SERVICES.map(raw => { const s = lang === "en" ? raw.en : raw; return `<div class="svc-row" tabindex="0"><h3>${esc(s.t)}</h3><div class="svc-body"><div class="svc-in"><p class="svc-l">${esc(s.l)}</p><p>${esc(s.d)}</p><div class="chips">${s.tags.map(x => `<span>${esc(x)}</span>`).join("")}</div></div></div></div>`; }).join("");
+  watchServices();
+  if ($("#certs")) $("#certs").innerHTML = CERTS.map(c => `<div class="cert"><span class="when">${esc(c.date)}</span><div><b>${esc(lang === "en" && c.en ? c.en : c.what)}</b><small>${esc(c.by)}</small></div>${c.url ? `<a class="kind" href="${esc(c.url)}" target="_blank" rel="noopener">${t("verify")} ↗</a>` : "<span></span>"}</div>`).join("");
+  if ($("#timeline")) $("#timeline").innerHTML = TIMELINE.map(raw => { const x = lang === "en" ? raw.en : raw; return `<div class="tl"><span class="when">${esc(x.when)}</span><div><b>${esc(x.what)}</b><small>${esc(x.where)}</small></div><span class="kind">${esc(x.kind)}</span></div>`; }).join("");
+}
+
+function renderReadMore() { const open = !$("#more").hidden; const b = $("#read-more"); b.textContent = (open ? t("readLess") + " ↑" : t("readMore") + " ↓"); b.setAttribute("aria-expanded", open); }
+$("#read-more").addEventListener("click", () => { $("#more").hidden = !$("#more").hidden; renderReadMore(); });
+function render() { renderReadMore(); renderStatic(); renderProjects(); stagger(); renderLists(); if (openIndex >= 0) openProject(openIndex); else if (openIndex === -2) openCerts(); else if (openIndex === -3) openContact(); }
+
+// langue
+document.querySelectorAll("[data-lang]").forEach(b => b.addEventListener("click", () => {
+  lang = b.dataset.lang; store.set("lang", lang); render();
+}));
+
+// thème clair / sombre : data-theme sur <html>, sinon on suit le système
+const root = document.documentElement;
+const isDark = () => root.dataset.theme === "dark";
+function updateThemeLabel() {
+  const btn = $("#theme-btn"); const dark = isDark();
+  btn.setAttribute("aria-label", dark ? t("darkOff") : t("darkOn"));
+  btn.setAttribute("aria-pressed", dark);
+}
+// Le site s'ouvre toujours en mode clair ; le mode sombre s'active avec le bouton
+$("#theme-btn").addEventListener("click", () => {
+  const next = isDark() ? "light" : "dark"; root.dataset.theme = next; updateThemeLabel();
+});
+
+render();
+
+// apparition douce au scroll : seuls les blocs sous la ligne de flottaison bougent, rien n'est masqué
+if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll(".sec-head, .card, .svc-row, .about > *, .contact .big, .facts").forEach((el, k) => {
+    if (el.getBoundingClientRect().top > innerHeight) { el.classList.add("rv"); if (el.classList.contains("card")) el.style.transitionDelay = (k % 2) * 90 + "ms"; io.observe(el); }
+  });
+  // lien actif dans le menu
+  const links = [...document.querySelectorAll('.nav ul a')];
+  const so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) links.forEach(a => a.setAttribute("aria-current", a.getAttribute("href") === "#" + e.target.id)); }), { rootMargin: "-45% 0px -50% 0px" });
+  ["travaux", "services", "apropos"].forEach(id => { const el = document.getElementById(id); if (el) so.observe(el); });
+}
+const navEl = document.querySelector(".nav");
+addEventListener("scroll", () => navEl.classList.toggle("scrolled", scrollY > 30), { passive: true });
+
+/* ===== ASSISTANT : questions fréquentes sur les services (sans IA, réponses écrites à l'avance) ===== */
+const BOT = {
+  ui: {
+    fr: { open:"Une question ?", title:"L'assistant occalm.", sub:"Réponses simples, sans jargon", hello:"Bonjour 👋 Je réponds aux questions sur les services, même si vous n'êtes pas familier avec le digital. Choisissez un sujet ou écrivez votre question.", topics:"Choisissez un sujet", more:"D'autres questions sur ce sujet", back:"← Tous les sujets", ph:"Écrivez votre question…", send:"Envoyer", none:"Je n'ai pas de réponse toute prête à cette question. Le plus simple : écrivez-moi directement, je vous réponds personnellement.", contact:"Écrire à Oumaima", close:"Fermer l'assistant" },
+    en: { open:"Any questions?", title:"The occalm. assistant", sub:"Simple answers, no jargon", hello:"Hi 👋 I answer questions about the services, even if you're new to digital. Pick a topic or type your question.", topics:"Pick a topic", more:"More questions on this topic", back:"← All topics", ph:"Type your question…", send:"Send", none:"I don't have a ready answer for that one. The easiest way: write to me directly and I'll reply personally.", contact:"Write to Oumaima", close:"Close the assistant" }
+  },
+  topics: [
+    { id:"start", fr:"Par où commencer ?", en:"Where do I start?" },
+    { id:"brand", fr:"Identité de marque", en:"Brand identity" },
+    { id:"social", fr:"Réseaux sociaux & contenu", en:"Social media & content" },
+    { id:"ads", fr:"Publicité digitale", en:"Digital advertising" },
+    { id:"web", fr:"Site web", en:"Website" },
+    { id:"seo", fr:"Être trouvé sur Google (SEO)", en:"Being found on Google (SEO)" },
+    { id:"leads", fr:"Prospects & CRM", en:"Leads & CRM" },
+    { id:"work", fr:"Prix, délais, façon de travailler", en:"Prices, timing, how we work" }
+  ],
+  qa: [
+    { t:"start", k:["commencer","debut","début","rien","besoin","quoi","start","begin","nothing","need"],
+      q:{ fr:"Je n'ai encore rien, par quoi commencer ?", en:"I have nothing yet, where do I start?" },
+      a:{ fr:"On commence presque toujours par la base : savoir qui vous êtes et à qui vous parlez (l'identité de marque), puis une présence simple, par exemple une page Instagram bien tenue ou un petit site. La publicité vient ensuite, quand il y a quelque chose de solide à montrer. Lors du premier échange, je vous dis honnêtement ce qui est utile pour vous, et ce qui peut attendre.", en:"We almost always start with the basics: knowing who you are and who you're talking to (brand identity), then a simple presence, such as a well-run Instagram page or a small website. Advertising comes later, once there's something solid to show. In our first call I'll tell you honestly what's useful for you and what can wait." } },
+    { t:"start", k:["digital","marketing digital","c'est quoi","definition","what is"],
+      q:{ fr:"Le marketing digital, c'est quoi exactement ?", en:"What exactly is digital marketing?" },
+      a:{ fr:"C'est tout ce qui fait connaître votre activité sur internet : votre site, vos réseaux sociaux, les publicités en ligne, les e-mails, le fait d'apparaître sur Google. Le but est simple : que les bonnes personnes vous trouvent, vous comprennent et vous contactent.", en:"It's everything that makes your business known online: your website, social media, online ads, emails, showing up on Google. The goal is simple: the right people find you, understand you and get in touch." } },
+    { t:"start", k:["petit","petite","seul","indépendant","freelance","small","alone"],
+      q:{ fr:"Je suis indépendant ou une petite structure, c'est pour moi ?", en:"I'm a freelancer or a small business, is this for me?" },
+      a:{ fr:"Oui. Une grande partie de mes clients sont des indépendants, des petites entreprises et des associations. On adapte la taille du projet à votre budget et à vos objectifs, sans vous vendre des choses inutiles.", en:"Yes. Many of my clients are freelancers, small businesses and non-profits. We size the project to your budget and goals, without selling you anything you don't need." } },
+
+    { t:"brand", k:["identité","identite","marque","branding","brand"],
+      q:{ fr:"Une identité de marque, ça sert à quoi ?", en:"What is a brand identity for?" },
+      a:{ fr:"C'est ce qui fait qu'on vous reconnaît et qu'on se souvient de vous : votre nom, votre logo, vos couleurs, votre façon de parler. Une identité claire inspire confiance et vous évite de paraître différent sur chaque support.", en:"It's what makes people recognise and remember you: your name, logo, colours and tone. A clear identity builds trust and stops you looking different on every channel." } },
+    { t:"brand", k:["logo","juste un logo"],
+      q:{ fr:"J'ai juste besoin d'un logo, c'est possible ?", en:"I only need a logo, is that possible?" },
+      a:{ fr:"Oui. Je vous conseille quand même d'y associer deux ou trois couleurs et une typographie : c'est ce qui rend le logo cohérent partout, de votre carte de visite à Instagram.", en:"Yes. I'd still suggest pairing it with two or three colours and a typeface: that's what keeps the logo consistent everywhere, from your business card to Instagram." } },
+    { t:"brand", k:["charte","graphique","guidelines","guide"],
+      q:{ fr:"C'est quoi une charte graphique ?", en:"What are brand guidelines?" },
+      a:{ fr:"Un petit guide qui explique comment utiliser votre logo, vos couleurs et vos polices. Il permet à n'importe qui (vous, un imprimeur, un futur prestataire) de garder la même image partout.", en:"A short guide explaining how to use your logo, colours and fonts. It lets anyone (you, a printer, a future provider) keep the same look everywhere." } },
+    { t:"brand", k:["print","affiche","flyer","imprimer","carte","kakemono","poster"],
+      q:{ fr:"Vous faites aussi les affiches et supports imprimés ?", en:"Do you also design posters and printed materials?" },
+      a:{ fr:"Oui : affiches, flyers, kakémonos, cartes de visite, brochures, rapports. Je prépare les fichiers prêts pour l'imprimeur, dans la même identité que le reste de votre communication.", en:"Yes: posters, flyers, roll-up banners, business cards, brochures, reports. I prepare print-ready files in the same identity as the rest of your communication." } },
+
+    { t:"social", k:["réseaux","reseaux","instagram","facebook","tiktok","linkedin","social"],
+      q:{ fr:"Sur quels réseaux dois-je être présent ?", en:"Which social networks should I be on?" },
+      a:{ fr:"Pas partout ! Il vaut mieux un ou deux réseaux bien tenus que cinq abandonnés. Instagram et Facebook pour le grand public, TikTok pour toucher les plus jeunes, LinkedIn pour les professionnels. On choisit selon l'endroit où se trouvent vos clients.", en:"Not all of them! One or two well-run networks beat five abandoned ones. Instagram and Facebook for the general public, TikTok to reach younger people, LinkedIn for professionals. We choose based on where your customers are." } },
+    { t:"social", k:["community","manager","gestion","gérer","messages","commentaires","manage"],
+      q:{ fr:"Le community management, c'est quoi ?", en:"What is community management?" },
+      a:{ fr:"C'est faire vivre vos pages au quotidien : publier, répondre aux messages et aux commentaires, remercier, rediriger les demandes vers votre site ou votre téléphone. Vos abonnés sentent qu'il y a quelqu'un derrière la page.", en:"It's keeping your pages alive day to day: posting, replying to messages and comments, thanking people, directing enquiries to your website or phone. Followers feel there's someone behind the page." } },
+    { t:"social", k:["combien de fois","fréquence","souvent","publier","how often","post"],
+      q:{ fr:"À quelle fréquence faut-il publier ?", en:"How often should I post?" },
+      a:{ fr:"La régularité compte plus que la quantité. Deux à trois publications par semaine, tenues dans la durée, valent mieux qu'une semaine intense suivie d'un mois de silence. On fixe ensemble un rythme réaliste.", en:"Consistency matters more than volume. Two or three posts a week, kept up over time, beat one busy week followed by a month of silence. We set a realistic pace together." } },
+    { t:"social", k:["abonnés","followers","grandir","croissance","grow"],
+      q:{ fr:"Vous pouvez m'aider à avoir plus d'abonnés ?", en:"Can you help me get more followers?" },
+      a:{ fr:"Oui, avec du contenu utile, régulier et des collaborations bien choisies (influenceurs, partenaires). Par exemple, pour l'association Dar Zhor, Instagram est passé de 2 000 à 12 800 abonnés, et le compte TikTok créé de zéro compte 19 000 abonnés. Mais l'objectif reste d'attirer les bonnes personnes, pas juste des chiffres.", en:"Yes, with useful, regular content and well-chosen collaborations (influencers, partners). For example, Dar Zhor's Instagram grew from 2,000 to 12,800 followers, and its TikTok, started from zero, now has 19,000. But the goal is attracting the right people, not just numbers." } },
+    { t:"social", k:["influence","influenceur","influenceuse","influencer"],
+      q:{ fr:"Travailler avec des influenceurs, ça marche vraiment ?", en:"Does working with influencers really work?" },
+      a:{ fr:"Quand l'influenceur correspond à votre public, oui. Pour BaByliss Maroc, un seul reel avec une influenceuse a dépassé 1 300 j'aime, avec de nombreuses demandes de prix en commentaires. Je m'occupe de choisir les profils, de préparer la collaboration et de suivre les résultats.", en:"When the influencer matches your audience, yes. For BaByliss Morocco, a single reel with an influencer passed 1,300 likes, with many price requests in the comments. I handle choosing profiles, preparing the collaboration and tracking results." } },
+
+    { t:"ads", k:["publicité","publicite","pub","ads","sponsorisé","sponsorise","advert"],
+      q:{ fr:"La publicité sur internet, comment ça marche ?", en:"How does online advertising work?" },
+      a:{ fr:"Vous payez Facebook, Instagram ou Google pour montrer votre message à des personnes choisies : par ville, âge, centres d'intérêt. Vous ne payez que pour la diffusion, et on peut arrêter ou ajuster à tout moment.", en:"You pay Facebook, Instagram or Google to show your message to chosen people: by city, age, interests. You only pay for delivery, and we can stop or adjust at any time." } },
+    { t:"ads", k:["budget","combien","coût","cout","cher","prix pub","cost"],
+      q:{ fr:"Quel budget faut-il pour la publicité ?", en:"What budget do I need for ads?" },
+      a:{ fr:"On peut commencer petit, avec un budget de test sur quelques semaines, puis augmenter ce qui fonctionne. Ce budget est payé directement à la plateforme (Meta, Google) ; il est séparé de mon accompagnement.", en:"We can start small, with a test budget over a few weeks, then scale what works. This budget goes straight to the platform (Meta, Google); it's separate from my fees." } },
+    { t:"ads", k:["meta","google ads","différence","difference"],
+      q:{ fr:"Meta Ads ou Google Ads, quelle différence ?", en:"Meta Ads or Google Ads, what's the difference?" },
+      a:{ fr:"Meta Ads (Facebook, Instagram) montre votre offre à des gens qui ne vous cherchaient pas encore : idéal pour se faire connaître. Google Ads vous place devant des gens qui cherchent déjà ce que vous proposez : idéal pour capter une demande existante.", en:"Meta Ads (Facebook, Instagram) shows your offer to people who weren't looking for you yet: great for awareness. Google Ads puts you in front of people already searching for what you offer: great for capturing existing demand." } },
+    { t:"ads", k:["résultat","resultat","marche","mesure","rapport","results","report"],
+      q:{ fr:"Comment je sais si la publicité a marché ?", en:"How do I know if the ads worked?" },
+      a:{ fr:"Je vous envoie un compte rendu simple : combien de personnes ont vu la pub, combien ont cliqué, combien de messages ou de demandes elle a apportés, et combien cela a coûté. Sans jargon.", en:"I send you a simple report: how many people saw the ad, how many clicked, how many messages or enquiries it brought, and what it cost. No jargon." } },
+
+    { t:"web", k:["site","web","internet","website"],
+      q:{ fr:"Ai-je vraiment besoin d'un site si j'ai Instagram ?", en:"Do I really need a website if I have Instagram?" },
+      a:{ fr:"Instagram ne vous appartient pas : les règles changent et tout le monde n'y est pas. Un site, c'est votre adresse officielle sur internet. Il rassure, il apparaît sur Google et il présente votre offre clairement, avec un bouton pour vous contacter ou prendre rendez-vous.", en:"You don't own Instagram: rules change and not everyone is on it. A website is your official address online. It reassures people, shows up on Google and presents your offer clearly, with a button to contact you or book." } },
+    { t:"web", k:["vitrine","landing","page","différence site","type de site"],
+      q:{ fr:"Site vitrine ou landing page, c'est quoi ?", en:"Showcase site or landing page, what are they?" },
+      a:{ fr:"Un site vitrine présente votre activité sur plusieurs pages (accueil, services, à propos, contact). Une landing page est une seule page conçue pour une action précise, par exemple s'inscrire à un événement ou demander un devis.", en:"A showcase site presents your business across several pages (home, services, about, contact). A landing page is a single page built for one action, such as signing up for an event or requesting a quote." } },
+    { t:"web", k:["délai","delai","temps","combien de temps","semaines","how long"],
+      q:{ fr:"Combien de temps pour créer un site ?", en:"How long does it take to build a website?" },
+      a:{ fr:"Pour un site vitrine simple, comptez généralement quelques semaines, selon le nombre de pages et la rapidité à réunir textes et photos. On fixe un calendrier précis au départ.", en:"For a simple showcase site, usually a few weeks, depending on the number of pages and how quickly texts and photos come together. We set a clear timeline at the start." } },
+    { t:"web", k:["modifier","mettre à jour","mise à jour","moi-même","update","edit"],
+      q:{ fr:"Pourrai-je modifier mon site moi-même ?", en:"Can I edit my website myself?" },
+      a:{ fr:"Oui. Je crée des sites faciles à mettre à jour et je vous montre comment changer un texte ou une photo. Si vous préférez ne pas vous en occuper, je peux aussi assurer la maintenance.", en:"Yes. I build sites that are easy to update and show you how to change a text or a photo. If you'd rather not deal with it, I can also handle maintenance." } },
+    { t:"web", k:["domaine","nom de domaine","hébergement","hebergement","domain","hosting"],
+      q:{ fr:"Nom de domaine, hébergement : c'est quoi ?", en:"Domain name, hosting: what are they?" },
+      a:{ fr:"Le nom de domaine, c'est l'adresse de votre site (par exemple votrenom.com). L'hébergement, c'est l'endroit où les fichiers du site sont stockés pour être visibles en ligne. Les deux se paient généralement à l'année, et je vous aide à les choisir.", en:"The domain name is your site's address (for example yourname.com). Hosting is where the site's files are stored so they can be seen online. Both are usually paid yearly, and I help you choose them." } },
+
+    { t:"seo", k:["seo","référencement","referencement","google","trouvé","trouver","found"],
+      q:{ fr:"Le SEO, c'est quoi ?", en:"What is SEO?" },
+      a:{ fr:"C'est l'art d'apparaître dans les résultats de Google sans payer de publicité. Par exemple, faire en sorte qu'en tapant « hypnothérapeute Casablanca », on tombe sur votre site. On y arrive avec des pages bien construites, les bons mots-clés et des contenus utiles.", en:"It's the art of showing up in Google results without paying for ads. For example, making sure that typing \"hypnotherapist Casablanca\" leads to your site. We get there with well-built pages, the right keywords and useful content." } },
+    { t:"seo", k:["rapide","combien de temps seo","résultats seo","when"],
+      q:{ fr:"Le SEO donne des résultats en combien de temps ?", en:"How long does SEO take to work?" },
+      a:{ fr:"C'est un travail de fond : on voit généralement les premiers effets après quelques mois. En contrepartie, les visites obtenues ne coûtent rien et continuent d'arriver dans le temps.", en:"It's long-term work: the first effects usually show after a few months. In return, the visits you get cost nothing and keep coming over time." } },
+    { t:"seo", k:["article","blog","écrire","rédaction","redaction","write"],
+      q:{ fr:"Pourquoi écrire des articles de blog ?", en:"Why write blog articles?" },
+      a:{ fr:"Chaque article répond à une question que se posent vos clients. Google les met en avant, ce qui amène des visiteurs sur votre site, et vous montre comme quelqu'un qui connaît son sujet. Je peux les écrire pour vous.", en:"Each article answers a question your customers ask. Google features them, bringing visitors to your site, and positions you as someone who knows their field. I can write them for you." } },
+
+    { t:"leads", k:["prospect","leads","clients potentiels","demandes"],
+      q:{ fr:"La génération de leads, ça veut dire quoi ?", en:"What does lead generation mean?" },
+      a:{ fr:"Un « lead », c'est une personne intéressée qui vous laisse ses coordonnées : elle demande un devis, s'inscrit, réserve un appel. La génération de leads, c'est mettre en place ce qui attire ces demandes : une page, un formulaire, une campagne.", en:"A \"lead\" is an interested person who leaves their details: they ask for a quote, sign up, book a call. Lead generation means setting up what attracts these enquiries: a page, a form, a campaign." } },
+    { t:"leads", k:["crm","fichier","contacts","suivi","outil","tool"],
+      q:{ fr:"Un CRM, c'est quoi et en ai-je besoin ?", en:"What is a CRM and do I need one?" },
+      a:{ fr:"C'est un carnet d'adresses intelligent : il garde la trace de chaque contact, de ce que vous lui avez dit et de la prochaine étape. Si vous recevez des demandes régulièrement et que vous en perdez dans vos messages, oui, ça vous fera gagner du temps et des clients.", en:"It's a smart address book: it tracks every contact, what you told them and the next step. If you get enquiries regularly and lose some in your messages, yes, it will save you time and customers." } },
+    { t:"leads", k:["email","e-mail","newsletter","mailing","emailing"],
+      q:{ fr:"Les newsletters et e-mails, ça sert encore ?", en:"Are newsletters and emails still useful?" },
+      a:{ fr:"Oui, beaucoup. Contrairement aux réseaux sociaux, vous parlez directement à des personnes qui vous ont donné leur accord. C'est idéal pour annoncer un événement, une nouveauté ou une offre.", en:"Yes, very. Unlike social media, you speak directly to people who opted in. It's ideal for announcing an event, something new or an offer." } },
+
+    { t:"work", k:["prix","tarif","combien","devis","coûte","price","quote"],
+      q:{ fr:"Combien ça coûte ?", en:"How much does it cost?" },
+      a:{ fr:"Cela dépend du projet : un logo seul, la gestion mensuelle de vos réseaux ou un site complet n'ont pas le même prix. Après un court échange, je vous envoie une proposition claire : quoi, quand, combien.", en:"It depends on the project: a logo alone, monthly social media management or a full website aren't priced the same. After a short chat I send you a clear proposal: what, when, how much." } },
+    { t:"work", k:["comment ça se passe","étapes","etapes","process","déroulement","how"],
+      q:{ fr:"Comment se passe une collaboration ?", en:"How does working together go?" },
+      a:{ fr:"1) Un premier échange pour comprendre votre activité et vos objectifs. 2) Une proposition claire. 3) La création, avec des points réguliers pour valider ensemble. 4) La mise en ligne et le suivi des résultats.", en:"1) A first chat to understand your business and goals. 2) A clear proposal. 3) Creation, with regular check-ins to approve together. 4) Launch and results tracking." } },
+    { t:"work", k:["maroc","distance","ville","étranger","remote","where"],
+      q:{ fr:"Vous travaillez seulement au Maroc ?", en:"Do you only work in Morocco?" },
+      a:{ fr:"Je suis basée au Maroc, mais je travaille aussi à distance avec des clients ailleurs. Les échanges se font en visio, par téléphone ou par e-mail.", en:"I'm based in Morocco but also work remotely with clients elsewhere. We talk by video call, phone or email." } },
+    { t:"work", k:["contact","contacter","joindre","rendez-vous","rdv","reach"],
+      q:{ fr:"Comment vous contacter ?", en:"How can I contact you?" },
+      a:{ fr:"Le plus simple : cliquez sur « Écrire à Oumaima » ci-dessous, décrivez votre besoin en quelques mots, et je vous réponds rapidement.", en:"The easiest way: click \"Write to Oumaima\" below, describe your need in a few words, and I'll get back to you quickly." } }
+  ]
+};
+
+(function initBot() {
+  const L = () => BOT.ui[lang];
+  const tx = o => o[lang] || o.fr;
+  const norm = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9 ]/g, " ");
+  const root = document.createElement("div");
+  root.className = "bot";
+  root.innerHTML = `<button type="button" class="bot-fab" id="bot-fab" aria-expanded="false" aria-controls="bot-panel"><span class="bot-dot"></span><span id="bot-fab-t"></span></button>
+    <div class="bot-panel" id="bot-panel" hidden role="dialog" aria-labelledby="bot-title">
+      <header class="bot-head"><div><b id="bot-title"></b><span id="bot-sub"></span></div><button type="button" class="bot-x" id="bot-x">✕</button></header>
+      <div class="bot-log" id="bot-log" aria-live="polite"></div>
+      <form class="bot-form" id="bot-form"><input id="bot-in" autocomplete="off"><button type="submit" id="bot-send"></button></form>
+    </div>`;
+  document.body.appendChild(root);
+  const log = root.querySelector("#bot-log"), panel = root.querySelector("#bot-panel"), fab = root.querySelector("#bot-fab");
+  let started = false;
+
+  function labels() {
+    root.querySelector("#bot-fab-t").textContent = L().open;
+    root.querySelector("#bot-title").textContent = L().title;
+    root.querySelector("#bot-sub").textContent = L().sub;
+    root.querySelector("#bot-in").placeholder = L().ph;
+    root.querySelector("#bot-send").textContent = L().send;
+    root.querySelector("#bot-x").setAttribute("aria-label", L().close);
+  }
+  function scroll() { log.scrollTop = log.scrollHeight; }
+  function msg(text, who) { const d = document.createElement("div"); d.className = "bm from-" + who; d.textContent = text; log.appendChild(d); scroll(); }
+  function chips(items, label) {
+    const w = document.createElement("div"); w.className = "bchips";
+    if (label) { const l = document.createElement("span"); l.className = "blabel"; l.textContent = label; w.appendChild(l); }
+    items.forEach(([t, fn, cls]) => { const b = document.createElement("button"); b.type = "button"; b.className = "bchip" + (cls ? " " + cls : ""); b.textContent = t; b.onclick = () => { w.querySelectorAll("button").forEach(x => x.disabled = true); fn(); }; w.appendChild(b); });
+    log.appendChild(w); scroll();
+  }
+  function showTopics() { chips(BOT.topics.map(tp => [tx(tp), () => openTopic(tp.id)]), L().topics); }
+  function openTopic(id) {
+    const tp = BOT.topics.find(x => x.id === id); msg(tx(tp), "me");
+    chips(BOT.qa.filter(x => x.t === id).map(item => [tx(item.q), () => answer(item)]).concat([[L().back, showTopics, "ghost"]]));
+  }
+  function answer(item, asked) {
+    if (!asked) msg(tx(item.q), "me");
+    setTimeout(() => {
+      msg(tx(item.a), "bot");
+      const rest = BOT.qa.filter(x => x.t === item.t && x !== item).slice(0, 3);
+      chips(rest.map(r => [tx(r.q), () => answer(r)]).concat([[L().contact, contact, "cta"], [L().back, showTopics, "ghost"]]), L().more);
+    }, 280);
+  }
+  function contact() { panel.hidden = true; fab.setAttribute("aria-expanded", "false"); openContact(); }
+  function ask(text) {
+    msg(text, "me");
+    const words = norm(text).split(/\s+/).filter(w => w.length > 2);
+    let best = null, score = 0;
+    BOT.qa.forEach(item => {
+      let sc = 0; const hay = norm(tx(item.q));
+      item.k.forEach(k => { if (norm(text).includes(norm(k))) sc += 3; });
+      words.forEach(w => { if (hay.includes(w)) sc += 1; });
+      if (sc > score) { score = sc; best = item; }
+    });
+    if (best && score >= 2) answer(best, true);
+    else setTimeout(() => { msg(L().none, "bot"); chips([[L().contact, contact, "cta"], [L().back, showTopics, "ghost"]]); }, 280);
+  }
+  function start() { log.innerHTML = ""; msg(L().hello, "bot"); showTopics(); started = true; }
+  fab.onclick = () => { const open = panel.hidden; panel.hidden = !open; fab.setAttribute("aria-expanded", open); if (open) { if (!started) start(); root.querySelector("#bot-in").focus(); } };
+  root.querySelector("#bot-x").onclick = () => { panel.hidden = true; fab.setAttribute("aria-expanded", "false"); fab.focus(); };
+  root.querySelector("#bot-form").addEventListener("submit", e => { e.preventDefault(); const i = root.querySelector("#bot-in"); const v = i.value.trim(); if (!v) return; i.value = ""; if (!started) start(); ask(v); });
+  labels();
+  document.querySelectorAll("[data-lang]").forEach(b => b.addEventListener("click", () => { labels(); if (started) start(); }));
+})();
+</script>
