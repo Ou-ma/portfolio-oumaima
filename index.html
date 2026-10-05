@@ -25,7 +25,7 @@
   --r:18px; --r-lg:26px; --gutter:clamp(18px,4.5vw,56px); --max:1280px;
   --ease:cubic-bezier(.22,.7,.18,1);
   --sec:clamp(88px,11vw,160px);
-  --band:var(--ink); --on-band:var(--ivory); --mauve:#7457e0;
+  --band:var(--ink); --on-band:var(--ivory); --mauve:#5e7bff;
   --razor:linear-gradient(115deg,transparent 46%,currentColor 46%,currentColor 54%,transparent 54%);
 }
 :root[data-theme="dark"]{
@@ -134,9 +134,9 @@ a.btn-ghost:not(:has(.arrow)){padding-right:22px}
 .portrait .tag{flex-direction:column;align-items:flex-start;gap:3px}
 .portrait .tag strong{font-family:var(--f-display);font-size:15.5px;letter-spacing:-.02em}
 .portrait .tag .role{font-size:10px;letter-spacing:.12em;opacity:.7}
-.tag-more{margin-top:4px;font-size:13px;font-weight:600;color:#b9a6ff;text-decoration:none;transition:letter-spacing .4s var(--ease)}
+.tag-more{margin-top:4px;font-size:13px;font-weight:600;color:#5e7bff;text-decoration:none;transition:letter-spacing .4s var(--ease)}
 .tag-more:hover{letter-spacing:.01em}
-.sticker{position:absolute;top:-22px;right:-22px;width:84px;height:84px;border-radius:50%;background:#7457e0;color:var(--ivory);display:grid;place-items:center;box-shadow:0 10px 24px -10px #10141f66;z-index:2}
+.sticker{position:absolute;top:-22px;right:-22px;width:84px;height:84px;border-radius:50%;background:#5e7bff;color:var(--ivory);display:grid;place-items:center;box-shadow:0 10px 24px -10px #10141f66;z-index:2}
 .sticker svg{position:absolute;inset:0;animation:spin 22s linear infinite}
 .sticker span{font-family:var(--f-display);font-size:24px;font-weight:900;letter-spacing:-.05em}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -148,7 +148,7 @@ a.btn-ghost:not(:has(.arrow)){padding-right:22px}
 .facts span{color:var(--muted);font-size:15px;line-height:1.5;max-width:34ch}
 
 /* ---------- marquee ---------- */
-.marquee{margin-top:clamp(64px,9vw,112px);background:#7457e0;color:var(--ivory);transform:rotate(1deg) scale(1.02);overflow:hidden;padding-block:16px;border-block:1px solid var(--ink)}
+.marquee{margin-top:clamp(64px,9vw,112px);background:#5e7bff;color:var(--ivory);transform:rotate(1deg) scale(1.02);overflow:hidden;padding-block:16px;border-block:1px solid var(--ink)}
 .track{display:flex;gap:40px;width:max-content;animation:slide 48s linear infinite}
 .marquee:hover .track{animation-play-state:paused}
 .track span{font-family:var(--f-display);font-weight:800;font-size:clamp(24px,3vw,40px);letter-spacing:-.035em;white-space:nowrap;display:flex;align-items:center;gap:40px}
@@ -392,7 +392,7 @@ footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border
   <div class="nav-in">
     <a class="logo" href="#top">occalm<b>.</b></a>
     <ul>
-      <li><a href="#travaux" data-i18n="navWork">Travaux</a></li>
+      <li><a href="#travaux" data-i18n="navWork">Projets</a></li>
       <li><a href="#services" data-i18n="navServices">Services</a></li>
       <li><a href="#apropos" data-i18n="navAbout">À propos</a></li>
     </ul>
@@ -496,7 +496,7 @@ footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border
       <div class="contact-row">
         <a class="btn btn-hi js-contact" href="#contact"><span data-i18n="formOpen"></span> <span class="arrow">↗</span></a>
         <a class="btn btn-ghost" href="https://occalm.com" target="_blank" rel="noopener">occalm.com <span class="arrow">↗</span></a>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/company/35622418/" target="_blank" rel="noopener">LinkedIn <span class="arrow">↗</span></a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/oumaima-bourouh-4a246a165/" target="_blank" rel="noopener">LinkedIn <span class="arrow">↗</span></a>
       </div>
     </div>
   </section>
@@ -512,7 +512,7 @@ footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border
 /* ===== TEXTES DU SITE (FR / EN) ===== */
 const I18N = {
   fr: {
-    navWork:"Travaux", navServices:"Services", navAbout:"À propos", navCta:"Travaillons ensemble",
+    navWork:"Projets", navServices:"Services", navAbout:"À propos", navCta:"Travaillons ensemble",
     status:"Disponible pour de nouveaux projets",
     heroSub:"Votre alliée pour <mark>une présence qui vous ressemble.</mark>",
     lede:"J’accompagne les indépendants, entreprises et associations à construire une marque claire et à la faire grandir en ligne, de la stratégie jusqu’aux expériences digitales et aux supports qui donnent vie à leur image.",
@@ -521,7 +521,7 @@ const I18N = {
     fact1t:"Projets variés", fact1:"Je travaille avec des entreprises, des associations et des indépendants.",
     fact2t:"Approche 360°", fact2:"J’interviens sur la marque, le contenu, le web et les campagnes.",
     fact3t:"Du brief au lancement", fact3:"J’accompagne chaque projet de la stratégie à la création, jusqu’au déploiement.",
-    workEyebrow:"Travaux sélectionnés", workTitle:"Projets sélectionnés", workIntro:"Une sélection de missions pour des marques, des studios, des associations et des entrepreneurs.",
+    workEyebrow:"Projets sélectionnés", workTitle:"Projets sélectionnés", workIntro:"Une sélection de missions pour des marques, des studios, des associations et des entrepreneurs.",
     svcEyebrow:"Ce que je fais", svcTitle:"Ce que je vous propose", svcIntro:"Survolez un service pour découvrir ce qu’il comprend. Chaque mission peut être prise seule ou combinée.",
     aboutTitle:"Marketeuse de formation, <span>créative</span> par passion.",
     aboutLead:"Il y a toujours eu deux Oumaima : celle qui veut comprendre pourquoi on choisit une marque, et celle qui ne peut pas s'empêcher de créer.",
